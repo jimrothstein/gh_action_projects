@@ -1,0 +1,6 @@
+^renv$
+^renv\.lock$
+^ghaR\.Rproj$
+^\.Rproj\.user$
+^LICENSE\.md$
+^ghaQuatro\.Rproj$
