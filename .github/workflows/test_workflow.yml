@@ -1,7 +1,7 @@
 name: test_workflow
 
 on:
-  test_workflow:
+  workflow_dispatch:
   pull_request:
     branches:
       - 'main'
