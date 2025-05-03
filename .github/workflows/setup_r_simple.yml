@@ -37,7 +37,7 @@ jobs:
         run: Rscript -e 'print(mtcars)'
 
       - name:  say hello 
-      - run:  | 
+        run:  | 
           echo "From action yml:  HELLO"
       
 
