@@ -3,7 +3,7 @@
 
 # REF:  https://github.com/actions/starter-workflows/blob/main/ci/blank.yml
 
-name: CI
+name: minimal
 
 # (only MANUaL) Controls when the workflow will run
 on:
