@@ -22,21 +22,21 @@ jobs:
         with:
           use-public-rspm: true
 
-      - name: Install packages
-        uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          packages: |
-	    any::admiral
-            #any::tidyverse 
-            #any::googlesheets4
+     # - name: Install packages
+     #   uses: r-lib/actions/setup-r-dependencies@v2
+     #   with:
+     #     packages: |
+	#    any::admiral
+        #    #any::tidyverse 
+        #    #any::googlesheets4
 
       - name: Check out repository
         uses: actions/checkout@v3
 
-      - name: Import data
+      - name: print 
         run: Rscript -e 'print(mtcars)'
 
-      - name:  run bash
+      - name:  say hello 
       - run:  | 
           echo "From action yml:  HELLO"
       
