@@ -1,4 +1,4 @@
-name: render Readme.Rmd
+name: render_README.Rmd
 
 on:  workflow_dispatch
 
