@@ -2,7 +2,7 @@ name: render_README.Rmd
 
 run-name:  run_name=render
 
-on:  workflow_dispatch
+on:  [workflow_dispatch, push]
 
 jobs:
   render:
@@ -24,6 +24,12 @@ jobs:
     - uses: r-lib/actions/setup-r@v2
       with:
         use-public-rspm: true
+
+     - name:  install knitr
+       run:  Rscript -e 'install.packages("knitr")'
+
+     - name:  install rmarkdown
+       run:  Rscript -e 'install.packages("rmarkdown")'
 
     - name: Render Quarto document
       run: |
