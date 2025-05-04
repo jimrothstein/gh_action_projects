@@ -1,10 +1,8 @@
-name:  simple_print
+name:  simple_source
 
 run-name: simple_print run_name
 
 on:
-  #push:
-    #branches: main
   workflow_dispatch:
     branches: main
 
