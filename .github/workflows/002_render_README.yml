@@ -6,10 +6,8 @@ on:  [workflow_dispatch, push]
 
 jobs:
   render:
+    name:  use ubuntu
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: write  # Grant write permissions to the repository
 
     steps:
     - name: Checkout repository
