@@ -1,14 +1,16 @@
 name: render_README.Rmd
 
-run-name:  run_name=render
+run-name:  run_name is render
 
 on:  [workflow_dispatch, push]
+
+permissions:
+  contents:  write
 
 jobs:
   render:
     name:  use ubuntu
-    runs-on: ubuntu-latest
-
+    runs-on:  ubuntu-latest
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4.2.2
