@@ -1,5 +1,7 @@
 name: render_README.Rmd
 
+run-name:  run_name=render
+
 on:  workflow_dispatch
 
 jobs:
@@ -24,17 +26,6 @@ jobs:
       with:
         use-public-rspm: true
 
-    - uses: r-lib/actions/setup-r-dependencies@v2
-      with:
-        extra-packages: any::rcmdcheck
-        needs: check
-
-    - uses: r-lib/actions/check-r-package@v2
-      with:
-        upload-snapshots: true
-        build_args: 'c("--no-manual","--compact-vignettes=gs+qpdf")'
-
-
     - name: Render Quarto document
       run: |
         quarto render README.Rmd	  --to gfm --output README.md
@@ -47,7 +38,7 @@ jobs:
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
         git add README.md
-        git commit -m "Update README.md from readme.qmd"
+        git commit -m "Update README.md from README.Rmd"
         git push
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
