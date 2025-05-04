@@ -13,9 +13,7 @@ jobs:
 
     steps:
 
-    - name:  cat output
-      run: echo "Purpose:    render README.Rmd  README.md (github)"
-
+   
     - name: Checkout repository
       uses: actions/checkout@v4.2.2
 
