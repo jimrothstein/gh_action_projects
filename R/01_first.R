@@ -1,1 +1,1 @@
-print("hi, first gha_simple")
+print("hi, first github_actions_project")
