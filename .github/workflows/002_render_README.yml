@@ -8,8 +8,7 @@ permissions:
   contents:  write
 
 jobs:
-  render:
-    name:  use ubuntu
+  quarto:
     runs-on:  ubuntu-latest
 
     steps:
