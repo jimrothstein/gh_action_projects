@@ -14,10 +14,9 @@ jobs:
     steps:
 
     - name:  cat output
-      run:  |
+      run: |
         cat("Purpose:    render README.Rmd  README.md (github)")
 	shell: Rscript{0}
-
     - name: Checkout repository
       uses: actions/checkout@v4.2.2
 
