@@ -19,17 +19,16 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4.2.2
 
-    # Install Quarto CLI
     - name: Set up Quarto
       uses: quarto-dev/quarto-actions/setup@v2
       with:
         version: LATEST
 
-     - name:  install knitr
-       run:  Rscript -e 'install.packages("knitr")'
+    - name:  install knitr
+      run:  Rscript -e 'install.packages("knitr")'
 
-     - name:  install rmarkdown
-       run:  Rscript -e 'install.packages("rmarkdown")'
+    - name:  install rmarkdown
+      run:  Rscript -e 'install.packages("rmarkdown")'
 
     - name: Render Quarto document
       run: |
