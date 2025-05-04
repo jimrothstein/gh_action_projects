@@ -12,6 +12,12 @@ jobs:
       contents: write  # Grant write permissions to the repository
 
     steps:
+
+    - name:  cat output
+      run:  |
+        cat("Purpose:    render README.Rmd  README.md (github)")
+	shell: Rscript{0}
+
     - name: Checkout repository
       uses: actions/checkout@v4.2.2
 
