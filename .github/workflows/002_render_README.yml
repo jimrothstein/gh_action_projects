@@ -2,7 +2,7 @@ name: render_README.Rmd
 
 run-name:  run_name is render
 
-on:  [workflow_dispatch, push]
+on:  [workflow_dispatch]
 
 permissions:
   contents:  write
