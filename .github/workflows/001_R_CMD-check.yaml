@@ -1,4 +1,5 @@
 ## WORKS
+## be careful with all dependencies! (does all)
 on:
   workflow_dispatch:
 
@@ -20,14 +21,16 @@ jobs:
         with:
           use-public-rspm: true
 
+      - uses: r-lib/actions/setup-renv@v2
+
       - name: Update to get updated PPA
         run:  echo "running linux"
         
-      - uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          needs: check
-
-      - uses: r-lib/actions/check-r-package@v2
-        with:
-          upload-snapshots: true
-          build_args: 'c("--no-manual","--compact-vignettes=gs+qpdf")'
+#      - uses: r-lib/actions/setup-r-dependencies@v2
+# with:
+#          needs: check
+#
+#      - uses: r-lib/actions/check-r-package@v2
+#        with:
+#          upload-snapshots: true
+#          build_args: 'c("--no-manual","--compact-vignettes=gs+qpdf")'
