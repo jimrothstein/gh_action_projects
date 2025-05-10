@@ -21,9 +21,8 @@ jobs:
           use-public-rspm: true
 
       - name: Update to get updated PPA
-        run: |
-          echo "running linux"
-	  sudo apt-get update
+        run:  echo "running linux"
+	#sudo apt-get update
         
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
