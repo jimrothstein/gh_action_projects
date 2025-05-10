@@ -21,7 +21,6 @@ jobs:
           use-public-rspm: true
 
       - name: Update to get updated PPA
-        if:  runner.os == 'Linux'
         run: |
           echo "running linux"
 	  sudo apt-get update
