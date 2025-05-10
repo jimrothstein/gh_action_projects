@@ -12,6 +12,7 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       R_KEEP_PKG_SOURCE: yes
+      Greeting: Hello from gha!
     steps:
       - uses: actions/checkout@v4
 
@@ -21,8 +22,10 @@ jobs:
 
       - name: Update to get updated PPA
           if: runner.os == 'Linux'
-          run: |
-            sudo apt-get update
+	  run: | echo "running linux"
+
+         # run: |
+	 # sudo apt-get update
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
