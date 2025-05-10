@@ -1,3 +1,4 @@
+# WORKS
 name:  simple_source
 
 run-name: simple_source is run-name
@@ -9,7 +10,7 @@ on:
 jobs:
   task1:
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'workflow_dispatch' }}
+    if: ${{ gitub.event_name == 'workflow_dispatch' }}
     steps:
       - name: echo
         run:  echo "This is workflow_dispatch"
