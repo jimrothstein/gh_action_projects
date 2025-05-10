@@ -22,7 +22,7 @@ jobs:
 
       - name: Update to get updated PPA
         if: runner.os == 'Linux'
-	run: | echo "running linux"
+	      run: | echo "running linux"
 
          # run: |
 	 # sudo apt-get update
