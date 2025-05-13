@@ -1,13 +1,13 @@
 # WORKS
-name:  simple_source
+name:  simple_push
 
-run-name: simple_source is run-name
+run-name: simple_push is run-name
 
 on:
   workflow_dispatch:
     branches: main
   push:
-    branches: main
+    branches: [main, special_br] 
 
 jobs:
   task1:
