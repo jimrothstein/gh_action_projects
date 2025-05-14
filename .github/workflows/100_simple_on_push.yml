@@ -32,4 +32,4 @@ jobs:
 
       - name: Print branch name
         run: echo "Branch name: ${{ github.ref_name }}"
-	  shell: bash
+	shell: bash
