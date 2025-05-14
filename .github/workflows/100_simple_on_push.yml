@@ -30,3 +30,6 @@ jobs:
       - name: Run script
         run: Rscript -e 'source("R/01_first.R")'
 
+      - name: Print branch name
+        run: echo "Branch name: ${{ github.ref_name }}"
+	shell: bash
