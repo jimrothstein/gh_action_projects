@@ -6,8 +6,6 @@ run-name: simple_source is run-name
 on:
   workflow_dispatch:
     branches: main
-  push:
-    branches: main
 
 jobs:
   task1:
