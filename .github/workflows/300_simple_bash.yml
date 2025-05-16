@@ -32,7 +32,7 @@ jobs:
       # Random number
       - name: Random Number
         id: random-number-generator
-        run: echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH
+        run: echo "$GITHUB_ACTION_PATH" 
         shell: bash
         env:
           GITHUB_ACTION_PATH: ${{ github.action_path }}
