@@ -22,7 +22,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Run script
-       run:|
+      run: |
         echo "Hello, world!"
         echo "Add other actions to build,"
 
