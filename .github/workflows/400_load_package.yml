@@ -5,7 +5,6 @@ name: load_package
 
 on:
   workflow_dispatch:
-    branches: main
 
 jobs:
   experiments:
@@ -23,7 +22,7 @@ jobs:
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
           packages: |
-	     any::diffdf
+            any::diffdf
 
       - name:  say hello 
         run:  | 
