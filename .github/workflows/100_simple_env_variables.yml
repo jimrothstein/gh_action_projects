@@ -4,7 +4,7 @@ name:  100_simple_env_variables
 run-name: simple_source is run-name
 
 on:
-#  push:
+  workflow_dispatch:
     branches: main
 
 jobs:
