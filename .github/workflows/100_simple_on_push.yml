@@ -1,5 +1,5 @@
 # WORKS
-name:  simple_source
+name:  100_simple_source
 
 run-name: simple_source is run-name
 
@@ -15,7 +15,7 @@ jobs:
       - name: echo
         run:  echo "This is workflow_dispatch"
 
-       
+
   print_something:
     runs-on: ubuntu-latest
     steps:
@@ -28,5 +28,5 @@ jobs:
       - name: Run script
         run: Rscript -e 'source("R/01_first.R")'
 
-#      - name: Print branch name
-#        run: echo "Branch name: ${{ github.ref_name }}"
+      - name: Print branch name
+        run: echo "Branch name: ${{ github.ref_name }}"
