@@ -1,0 +1,35 @@
+R WORKS
+name:  simple_source
+
+run-name: simple_source is run-name
+
+on:
+  workflow_dispatch:
+    branches: main
+
+jobs:
+  task1:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    steps:
+      - name: echo
+        run:  echo "This is workflow_dispatch"
+
+       
+  print_something:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Run script
+        run: Rscript -e 'source("R/01_first.R")'
+
+      - name: hi
+        run:  echo "hi"
+
+      - name: Print branch name
+        run: echo "Branch name: ${{ github.ref_name }}"

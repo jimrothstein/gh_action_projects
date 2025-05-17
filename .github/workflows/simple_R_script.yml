@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run script
-        run: Rscript -e 'source("01_first.R")'
+        run: Rscript -e 'source("R/01_first.R")'
 
       - name: Commit results
         run: |
