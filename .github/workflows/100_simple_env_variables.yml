@@ -31,6 +31,7 @@ jobs:
 #        run: echo "Branch name: ${{ github.ref_name }}"
 
       - name:  dump
-        env:  X: ${{ toJSON(github) }}
-	run: echo "$X"
+	run: echo $X
+        env:
+	  X: ${{ toJSON(github) }}
       
