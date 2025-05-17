@@ -33,7 +33,7 @@ jobs:
         run: Rscript -e 'devtools::load_all()'
         
       - name: run the code
-        run: Rscript -e 'run()'
+        run: R -e 'run()'
         env:
           GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }} # If your script interacts with GitHub
 
