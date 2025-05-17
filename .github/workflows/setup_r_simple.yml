@@ -8,8 +8,6 @@ name: setup_r_simple
 on:
   workflow_dispatch:
     branches: main
-  #push:
-  #  branches: main
 
 jobs:
   experiments:

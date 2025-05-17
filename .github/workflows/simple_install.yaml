@@ -3,10 +3,7 @@ name:  simple_install
 run-name: simple_install run_name
 
 on:
-  #push:
-    #branches: main
-  workflow_dispatch:
-    branches: main
+  workflow_dispatch
 
 jobs:
   import-data:

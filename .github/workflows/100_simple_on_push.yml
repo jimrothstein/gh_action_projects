@@ -4,7 +4,7 @@ name:  simple_source
 run-name: simple_source is run-name
 
 on:
-  push:
+#  push:
     branches: main
 
 jobs:
