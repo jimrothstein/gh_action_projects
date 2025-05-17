@@ -29,11 +29,8 @@ jobs:
       - name: Install devtools
         run: Rscript -e 'install.packages("devtools")'
 
-      - name:  load_all
-        run: Rscript -e 'devtools::load_all()'
-        
-      - name: run the code
-        run: R -e 'run()'
+      - name:  load_all, run
+        run: Rscript -e 'devtools::load_all(); run()'
         env:
           GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }} # If your script interacts with GitHub
 
