@@ -1,3 +1,11 @@
+---
+title: "QC Report1"
+format: html
+date: "`r Sys.Date()`"
+editor: visual
+execute:
+  keep-md: true
+---
 PURPOSE:  Can I print ?
 
 ```{r data_html}
