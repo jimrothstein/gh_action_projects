@@ -21,13 +21,18 @@ jobs:
         uses: actions/checkout@v4
 
       - name: echo task
-        run: echo "Task2"
+        run: echo "Task2: works on GITHUB, not act"
+
+# WORKS in github
+# uploads multiple files
+# does not work in act
 
       - name: upload
         uses: actions/upload-artifact@v4
         with:
           name: goodbye.sh
           path: '**/*'
+# this path uploads everything in root directory of package, careful.
 
       - name: finish
         run:  echo "task2 finished"
