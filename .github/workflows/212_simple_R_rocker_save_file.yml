@@ -1,0 +1,44 @@
+# WORKS !
+name:  212 simple rocker 
+
+run-name: 212 runs simple R script
+
+on:
+  workflow_dispatch
+
+jobs:
+  task1:
+    runs-on: ubuntu-latest
+    container:
+      image:  rocker/r-ver:latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Run script
+        run: Rscript -e 'source("R/01_first.R")'
+
+      - name: Install Dependencies
+        run:  |
+          Rscript -e 'install.packages(c("diffdf"))'
+
+      - name: R file
+        run:  Rscript -e 'source("load_run.R" )'
+
+      - name: echo
+        run: |
+          echo "trying to save file"
+          echo "212_rocker" >> hello.txt
+
+ 
+
+#   WANTS KEY?
+
+#    - name:  commit2
+#      - uses: actions/checkout@v4
+#      - run: |
+#        echo "hi" > foo
+#        git commit -m "save hello.txt"
+#      - uses: r-lib/actions/pr-push@v2
+#        with:
+#          repo-token: ${{ secrets.GITHUB_TOKEN }}
