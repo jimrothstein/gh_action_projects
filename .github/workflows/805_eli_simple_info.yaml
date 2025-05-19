@@ -17,6 +17,6 @@ jobs:
       - name:  info
         run: |
           git status
-          BASE_VERSION="$(Rscript -e 'packageVersion("base")'"
+          BASE_VERSION="$(Rscript -e 'packageVersion("base")')"
           echo "Base version is:  $BASE_VERSION"
         shell: bash
