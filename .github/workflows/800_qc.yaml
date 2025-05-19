@@ -1,26 +1,11 @@
 name: QC Check ✅
 
 ## REF:   qc.yaml from ELI, issue #26
+## WORKS
 on:
   workflow_dispatch:
 
 jobs:
-  task1:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-
-      - name: setup R
-        uses: r-lib/actions/setup-r@v2
-
-      - name:  info
-      - run: |
-          git status -s
-	  BASE_VERSION="$(Rscript -e 'packageVersion("base")'
-	  echo "Base version is:  $BASE_VERSION"
-        shell: bash
-
   qc-check:
     runs-on: ubuntu-latest
     steps:
