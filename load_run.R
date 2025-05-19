@@ -12,7 +12,7 @@ library(diffdf)
 ##' @return 
 ##' @author jim
 print(getwd())
-base = readRDS("old.RDS")
+base = readRDS("./old.RDS")
 compare = readRDS("new.RDS")
 keys = NULL
 file = "diff_output.txt"
