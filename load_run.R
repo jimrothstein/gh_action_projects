@@ -11,6 +11,7 @@ library(diffdf)
 ##' @title 
 ##' @return 
 ##' @author jim
+print(getwd())
 base = readRDS("old.RDS")
 compare = readRDS("new.RDS")
 keys = NULL
@@ -43,11 +44,7 @@ cat("Git Ref: ", Sys.getenv("GITHUB_REF"), "\n")
 #  cat("</details>")
 #   cat("\n\n")
 #}
-diffdf::diffdf(
-  base=readRDS("old.RDS"),
-  compare=readRDS("new.RDS"),
-  file = "output_diff.txt")
-print(diffdf)
+print(res)
 sink()
 
 #| warning: false
