@@ -31,6 +31,8 @@ jobs:
       - name: Render Quarto document
         run: |
           quarto render README.Rmd  --to gfm --output README.md
+          quarto render qcReport1.qmd
+	  echo "QUARTO"
 
 #      - name: Run quarto
 #        run: R -e 'quarto::quarto_render("")'
