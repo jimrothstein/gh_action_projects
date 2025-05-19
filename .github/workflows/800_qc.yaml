@@ -28,8 +28,12 @@ jobs:
         run: |
           Rscript -e 'install.packages(c("dplyr", "jsonlite", "quarto", "diffdf", "rmarkdown", "safetyData", "tibble", "stringr", "haven"), repos = "https://packagemanager.posit.co/cran/__linux__/noble/latest")'
 
-      - name: Run quarto
-        run: R -e 'quarto::quarto_render("")'
+      - name: Render Quarto document
+        run: |
+          quarto render README.Rmd  --to gfm --output README.md
+
+#      - name: Run quarto
+#        run: R -e 'quarto::quarto_render("")'
 
 #      - name: Upload report artifact
 #        uses: actions/upload-artifact@v4
