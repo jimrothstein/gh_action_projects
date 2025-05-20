@@ -10,18 +10,33 @@ permissions:
 jobs:
   quarto:
     runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     container:
       image:  rocker/r-ver:latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: install dependencies from DESCRIPTION
-          run: pak::pak("quarto")
+      - name: Install packages
+        uses: r-lib/actions/setup-r-dependencies@v2 # automatically sets up cache
+        with:
+          packages: |
+            any::readr
+            any::tidyr
+            any::dplyr
+            any::lubridate
+            any::stringr
+            any::R.utils
+            any::quarto
+            any::jsonlite
+
+#      - name: Check out repository
+#        uses: actions/checkout@v4
+#      - name: install dependencies from DESCRIPTION
+#          run: Rscript -e 'pak::pak("quarto")'
 #            remotes::install_local(force = TRUE, dependencies = TRUE)
-          shell: Rscript {0}
+#shell: Rscript {0}
 #          env:
 #            R_REMOTES_STANDALONE: "true"
 
