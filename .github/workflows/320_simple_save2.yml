@@ -25,19 +25,11 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: echo "$GITHUB_ACTION_PATH" 
+        run: echo "hello  $GITHUB_ACTION_PATH" >> hello.txt
         shell: bash
         env:
           GITHUB_ACTION_PATH:  ${{ github.action_path }}
 
-#      # Random number
-#      - name: Random Number
-#        id: random-number-generator
-#        run: echo "$GITHUB_ACTION_PATH" >> hello.txt
-#        shell: bash
-#        env:
-#          GITHUB_ACTION_PATH: ${{ github.action_path }}
-#
 #       # Run goodbye.sh
 #      - name:  goodbye.sh
 #        run:  ./goodbye.sh
