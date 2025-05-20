@@ -1,12 +1,19 @@
-
-name: QC Check ✅
+# render:  fails on act
+name: 220 render QC ✅
 
 on:
   workflow_dispatch:
 
+# token needs
+permissions:
+  contents:  write
+
+
 jobs:
   qc-check:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     container:
       image:  rocker/r-ver:latest
     steps:
@@ -24,8 +31,8 @@ jobs:
         run: |
           quarto render README.Rmd  --to gfm --output README.md
 
-#      - name: Run QC script
-#        run: R -e 'quarto::quarto_render("qcReport.qmd")'
+      - name: Run QC script
+        run: R -e 'quarto::quarto_render("README.Rmd")'
 
 #      - name: Upload report artifact
 #        uses: actions/upload-artifact@v4
@@ -37,4 +44,5 @@ jobs:
 #        uses: thollander/actions-comment-pull-request@v3
 #        with:
 #          file-path: qc.Rmd
+
 
