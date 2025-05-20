@@ -33,6 +33,7 @@ jobs:
 
       - name: Run QC script
         run: R -e 'quarto::quarto_render("README.Rmd")'
+	shell: R {0}
 
 #      - name: Upload report artifact
 #        uses: actions/upload-artifact@v4

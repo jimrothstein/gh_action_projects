@@ -10,6 +10,8 @@ permissions:
 jobs:
   quarto:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     container:
       image:  rocker/r-ver:latest
     steps:
@@ -30,7 +32,10 @@ jobs:
 
         # Install R dependencies
         run: |
-          Rscript -e 'install.packages(c("dplyr", "jsonlite", "quarto", "diffdf", "rmarkdown", "safetyData", "tibble", "stringr", "haven"), repos = "https://packagemanager.posit.co/cran/__linux__/noble/latest")'
+          Rscript -e 'install.packages(
+          c("dplyr", "jsonlite", "quarto", "diffdf", "rmarkdown", "safetyData",
+          "tibble", "stringr", "haven"),
+          repos = "https://packagemanager.posit.co/cran/__linux__/noble/latest")'
 
 
        - name: Render Quarto Project
@@ -47,6 +52,7 @@ jobs:
       - name: Render Quarto document
         run: |
           quarto render README.Rmd  --to gfm --output README.md
+	  quarto render README.Rmd 
 
 #quarto render 280_emacs_notes.qmd --to gfm --output 280_emacs_notes.md
 #quarto render 250_quarto_knitr_SCSS_NOTES.qmd --to gfm --output 250_quarto_knitr_SCSS_NOTES.md
