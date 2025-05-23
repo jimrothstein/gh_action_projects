@@ -34,7 +34,7 @@ jobs:
 
       - name: Running on the default branch (i.e non tag based branch).
         if: {{ steps.branch-names.outputs.is_tag == 'false' &&
-	steps.branch-names.outputs.is_default == 'true'}}
+          steps.branch-names.outputs.is_default == 'true'}}
         run: |
           echo "Running on branch: ${{ steps.branch-names.outputs.current_branch }}"
         # Outputs: "Running on branch: main".
