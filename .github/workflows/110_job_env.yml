@@ -17,7 +17,9 @@ jobs:
     if: ${{ github.event_name == 'workflow_dispatch' }}
     steps:
       - name: echo
-        run:  echo "This is workflow_dispatch"
+        run: |
+          echo "This is workflow_dispatch"
+          echo 'This is task1 ${{ env.name }}'
 
   task2:
     runs-on: ubuntu-latest
