@@ -15,7 +15,7 @@ jobs:
         run:  echo "This is workflow_dispatch"
 
   branch-name:
-    runs-on:  ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Get branch names
         id: branch-names
