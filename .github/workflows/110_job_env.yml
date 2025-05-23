@@ -19,7 +19,7 @@ jobs:
           echo 'This is task1 ${{ env.name }}'
         env:
           name: "task1"
-          echo 'This is task1 ${{ env.name }}'
+          run: echo 'This is task1 ${{ env.name }}'
 
 
 
