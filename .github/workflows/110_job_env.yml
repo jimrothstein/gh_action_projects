@@ -1,6 +1,5 @@
-#  FAILS on ACT
+#  Works on ACT
 name:  100_simple_env_variables
-
 
 run-name: simple_source is run-name
 
@@ -18,8 +17,12 @@ jobs:
     steps:
       - name: echo
         run: |
-          echo "This is workflow_dispatch"
+          echo "This is task1 and workflow_dispatch"
           echo 'This is task1 ${{ env.name }}'
+          echo 'This is task1 ${{ on.env.name }}'
+
+
+
 
   task2:
     runs-on: ubuntu-latest
