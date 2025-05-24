@@ -1,0 +1,48 @@
+# from Gemini AI
+
+name: Parse JSON Output Example
+
+on: [push]
+
+jobs:
+  process_data:
+    runs-on: ubuntu-latest
+    outputs:
+      job_status_message: ${{ steps.run_script.outputs.json_message.message }}
+      # Access parsed data directly
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run script and capture JSON output
+        id: run_script # Give this step an ID to reference its outputs
+        run: |
+          # Execute your script and capture its output
+          JSON_OUTPUT=$(./shell_scripts/your_script.sh)
+          # Set the output of this step. It must be a single string.
+          echo "json_message=$JSON_OUTPUT" >> "$GITHUB_OUTPUT"
+          echo "end of id=run_script"
+
+# WHY FAILS HERE?
+
+#      - name: Parse and use JSON data
+#        run: |
+#          # Access the raw JSON string from the previous step's output
+#          RAW_JSON_STRING="${{ steps.run_script.outputs.json_message }}"
+#          echo "Raw JSON string: $RAW_JSON_STRING"
+#
+#          # Parse the JSON string into an object using fromJSON()
+#          # Then access its properties using dot notation
+#           PARSED_STATUS="${{ fromJSON(steps.run_script.outputs.json_message).status }}"
+#          PARSED_DATA_ID="${{ fromJSON(steps.run_script.outputs.json_message).data_id }}"
+#          PARSED_MESSAGE="${{ fromJSON(steps.run_script.outputs.json_message).message }}"
+#
+#          echo "Parsed Status: $PARSED_STATUS"
+#          echo "Parsed Data ID: $PARSED_DATA_ID"
+#          echo "Parsed Message: $PARSED_MESSAGE"
+#
+#          # You can also use it for conditional logic
+#          if [[ "${{ fromJSON(steps.run_script.outputs.json_message).status }}" == "success" ]]; then
+#            echo "Operation was successful!"
+#          fi
