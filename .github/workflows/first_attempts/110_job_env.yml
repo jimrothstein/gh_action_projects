@@ -1,0 +1,28 @@
+#  task2 fails on act, task1 also problems
+name:  100_simple_env_variables
+
+run-name: 100_simple_source is run-name
+
+on:
+  workflow_dispatch:
+env:
+env:
+  message: 'a message'
+  my_token: ${{ secrets.GITHUB_TOKEN }}
+  NAME: "top_env"
+
+jobs:
+  task1:
+    runs-on: ubuntu-latest
+    steps:
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    - name: echo1
+      run: |
+      echo "${{ env.NAME }"
+
+  task3:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      if: always()
+        run: echo "always()"

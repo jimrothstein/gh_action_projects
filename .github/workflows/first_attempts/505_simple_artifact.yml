@@ -1,6 +1,8 @@
-name:  510_simple_artifact
+# act FAILS (action token ?)
+# github  WoRKS
+name:  505_simple_artifact
 
-run-name: 510
+run-name: 505
 
 on:
   [workflow_dispatch, pull_request]
