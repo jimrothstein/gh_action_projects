@@ -17,5 +17,7 @@ jobs:
        run: |
          echo "Run id = $GITHUB_RUN_ID"
          echo "Run attempt = $GITHUB_RUN_ATTEMPT"
+         echo "Run number = $GITHUB_RUN_NUMBER"
          echo "ACTOR = $GITHUB_ACTOR"
          echo "OS = $RUNNER_OS"
+         echo "EVENT = $GITHUB_EVENT_NAME"
