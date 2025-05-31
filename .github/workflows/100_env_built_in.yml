@@ -13,7 +13,7 @@ jobs:
          echo "100_buit_in"
          echo "SHA = ${{ env.GITHUB_SHA }}"
 
-     - name: 2
+     - name:  print
        run: |
          echo "Run id = $GITHUB_RUN_ID"
-	 echo "Run attempt = $GITHUB_RUN_ATTEMPT"
+         echo "Run attempt = $GITHUB_RUN_ATTEMPT"
