@@ -12,6 +12,7 @@ jobs:
        run: |
          echo "100_buit_in"
          echo "SHA = ${{ env.GITHUB_SHA }}"
+         echo "EVENT = ${{ GITHUB_EVENT_NAME}}"
 
      - name:  print
        run: |
