@@ -13,16 +13,7 @@ jobs:
          echo "100_buit_in"
          echo "SHA = ${{ env.GITHUB_SHA }}"
 
-  job2:
-    runs-on: ubuntu-latest
-    steps:
-      - name: SHA_with_var
-        run: |
-         echo "VAR=$(echo $GITHUB_SHA)" >> "$GITHUB_ENV"
-
-  job3:
-    runs-on: ubuntu-latest
-    steps:
-      -name: print
+     - name: 2
        run: |
-         echo $VAR
+         echo "Run id = $GITHUB_RUN_ID"
+	 echo "Run attempt = $GITHUB_RUN_ATTEMPT"
