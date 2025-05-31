@@ -11,3 +11,4 @@ jobs:
      - name:  built-in
        run: |
          echo "100_buit_in"
+         echo ${{ env.GITHUB_SHA }}
