@@ -17,3 +17,4 @@ jobs:
        run: |
          echo "Run id = $GITHUB_RUN_ID"
          echo "Run attempt = $GITHUB_RUN_ATTEMPT"
+         echo "ACTOR = $GITHUB_ACTOR"
