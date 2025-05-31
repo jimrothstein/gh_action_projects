@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  job5:
+  job1:
     runs-on: ubuntu-latest
 
     steps:
@@ -12,3 +12,16 @@ jobs:
        run: |
          echo "100_buit_in"
          echo "SHA = ${{ env.GITHUB_SHA }}"
+
+  job2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: SHA_with_var
+        run: |
+         echo "VAR=$(echo $GITHUB_SHA)" >> "$GITHUB_ENV"
+
+  job3:
+    runs-on: ubuntu-latest
+    steps:
+      -name: print
+       run: echo $VAR
