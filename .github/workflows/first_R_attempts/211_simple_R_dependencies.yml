@@ -1,6 +1,6 @@
-name:  210 Rsimple R script
+name:  211 simple-R dependencies
 
-run-name: runs simple R script
+run-name: 211 runs simple R script
 
 on:
   workflow_dispatch
@@ -22,16 +22,13 @@ jobs:
       - name: Install packages
         if: ${{ !env.ACT }}
         uses: r-lib/actions/setup-r-dependencies@v2
+	with:
+	  dependencies: hard    # only necessary
+
       #  with:
       #   packages: |
       #      any::tidyverse
       #      any::googlesheets4
-
-# nope:  sudo not foudn
-      - name:  install R
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y r-base
 
       - name: Run script
         run: Rscript -e 'source("R/01_first.R")'
