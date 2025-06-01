@@ -24,7 +24,7 @@ jobs:
         if: ${{ !env.ACT }}
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          dependencies: 'hard'
+          dependencies: hard
 
       - name: Run script
         run: Rscript -e 'source("R/01_first.R")'
