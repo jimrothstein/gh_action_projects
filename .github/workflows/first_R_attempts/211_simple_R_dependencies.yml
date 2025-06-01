@@ -24,14 +24,6 @@ jobs:
         if: ${{ !env.ACT }}
         uses: r-lib/actions/setup-r-dependencies@v2
 
-#        with:
-#          dependencies: 'hard'    # only necessary
-
-      #  with:
-      #   packages: |
-      #      any::tidyverse
-      #      any::googlesheets4
-
       - name: Run script
         run: Rscript -e 'source("R/01_first.R")'
 
