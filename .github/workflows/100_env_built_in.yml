@@ -3,6 +3,8 @@ name: 100_built_in
 on:
   workflow_dispatch:
 
+run-name:  echo "number = $GITHUB_RUN_ATTEMPT"
+
 jobs:
   job1:
     runs-on: ubuntu-latest
