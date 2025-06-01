@@ -1,6 +1,6 @@
-name:  211 simple-R dependencies
+name:  201 simple-R dependencies
 
-run-name: 211 runs simple R script
+run-name: 201 dependencies
 
 on:
   workflow_dispatch:
@@ -23,6 +23,8 @@ jobs:
       - name: Install packages
         if: ${{ !env.ACT }}
         uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          dependencies: 'hard'
 
       - name: Run script
         run: Rscript -e 'source("R/01_first.R")'
