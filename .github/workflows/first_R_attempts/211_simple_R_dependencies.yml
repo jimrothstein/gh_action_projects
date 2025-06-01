@@ -23,8 +23,9 @@ jobs:
       - name: Install packages
         if: ${{ !env.ACT }}
         uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          dependencies: 'hard'    # only necessary
+
+#        with:
+#          dependencies: 'hard'    # only necessary
 
       #  with:
       #   packages: |
