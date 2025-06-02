@@ -3,6 +3,8 @@
 # Display name of workflow
 name: Basic Workflow
 
+run-name: branch is ${{ github.headref || github.ref_name }}, ${{ github.run_number }}, @${{ github.actor }}
+
 # Controls when the action will run. Workflow runs when manually triggered using the UI or API.
 on:
   workflow_dispatch:
