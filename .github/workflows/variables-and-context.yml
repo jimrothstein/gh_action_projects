@@ -2,6 +2,8 @@
 
 name: Variables and Context
 
+run-name: branch is ${{ github.headref || github.ref_name }}
+
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
 on:
