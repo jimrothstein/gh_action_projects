@@ -70,4 +70,5 @@ jobs:
 #          fi
 
       - name: git
-          git ls-files | grep 'yml'
+          run: |
+            git ls-files | grep 'yml'
