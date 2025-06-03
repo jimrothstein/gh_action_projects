@@ -18,7 +18,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GH_TOKEN }}
+          GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
       - name: filter
         uses: dorny/paths-filter@v3
