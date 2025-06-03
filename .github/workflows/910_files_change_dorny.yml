@@ -1,0 +1,28 @@
+name: 910_files_change_dorny
+
+## PURPOSE:
+##  Run only when *.yml changes
+##  Run when anything changes in .github/workflow directory changes
+
+# seems be OR, not AND
+on:
+  push:
+    branches:
+      - '1-time'
+
+run-name:  ${{ github.event_name }}, branch is ${{ github.headref || github.ref_name }}, ${{ github.run_number }}, @${{ github.actor }}
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+     - uses: dorny/paths-filter@v3
+       id: changes
+        with:
+          filters: |
+            src:
+              - '.github/workflows/**'
+
+# run only if some file in 'src' folder was changed
+     - if: steps.changes.outputs.src == 'true'
+       run: ...echo "hello"

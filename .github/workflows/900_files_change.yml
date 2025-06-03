@@ -3,6 +3,8 @@ name: 900_files_change
 ## PURPOSE:
 ##  Run only when *.yml changes
 ##  Run when anything changes in .github/workflow directory changes
+
+# seems be OR, not AND
 on:
   push:
     branches:
