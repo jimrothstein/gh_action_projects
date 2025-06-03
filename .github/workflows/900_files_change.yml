@@ -15,13 +15,30 @@ on:
 
 run-name:  ${{ github.event_name }}, branch is ${{ github.headref || github.ref_name }}, ${{ github.run_number }}, @${{ github.actor }}
 
+## job:debug runs ONLY if event_name is 'push'
+
 jobs:
+
+# runs only if event is workflow_dispatch
+
+  workflow_job:
+    name:  workflow_job_name
+    runs-on:  ubuntu-latest
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    steps:
+      - name: echo
+        run: |
+          echo "event must be workflow_dispatch"
+
+# runs only if event is push
   debug:
     name: Debug
     runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' }}
     steps:
       - name: echo
-        run: echo "hello branch is ${{ github.ref_name }}"
+        run: echo "hello event is ${{ github.event_name }} branch is ${{ github.ref_name }}"
+
 
       - name: Print environment variables
         run: env
@@ -39,10 +56,12 @@ jobs:
           JOB_CONTEXT: ${{ toJson(job) }}
         run: echo "$JOB_CONTEXT"
 
-      - name: Dump steps context
-        env:
-          STEPS_CONTEXT: ${{ toJson(steps) }}
-        run: echo "$STEPS_CONTEXT"
+
+
+#      - name: Dump steps context
+#        env:
+#          STEPS_CONTEXT: ${{ toJson(steps) }}
+#        run: echo "$STEPS_CONTEXT"
 
 #      - name: Dump runner context
 #        env:
