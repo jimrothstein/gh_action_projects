@@ -17,10 +17,10 @@ jobs:
     steps:
      - uses: dorny/paths-filter@v3
        id: changes
-        with:
-          filters: |
-            src:
-              - '.github/workflows/**'
+       with:
+         filters: |
+           src:
+             - '.github/workflows/**'
 
 # run only if some file in 'src' folder was changed
      - if: steps.changes.outputs.src == 'true'
