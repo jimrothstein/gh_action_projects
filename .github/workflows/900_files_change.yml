@@ -1,4 +1,4 @@
-name: 900_files_change  
+name: 900_files_change
 
 ## PURPOSE:
 ##  Run only when *.yml changes
@@ -6,8 +6,8 @@ name: 900_files_change
 on:
   push:
     branches:
-      - 1-time 
-    paths:  **/*.yml
+      - '1-time'
+    paths:  '**/*.yml'
 
 run-name:  ${{ github.event_name }}, branch is ${{ github.headref || github.ref_name }}, ${{ github.run_number }}, @${{ github.actor }}
 
