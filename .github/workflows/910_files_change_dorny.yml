@@ -1,5 +1,7 @@
 name: 910_files_change_dorny
 
+## ------------------------  NOT WoRKING, can not find `git`
+
 ## PURPOSE:
 ##  Run only when *.yml changes
 ##  Run when anything changes in .github/workflow directory changes

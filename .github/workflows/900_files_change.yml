@@ -6,11 +6,12 @@ name: 900_files_change
 
 # seems be OR, not AND
 on:
-#  push:
-#    branches:
-#      - '1-time'
-#    paths:  '**/*.yml'
-   workflow_dispatch 
+  push:
+    paths:
+      - '**/*.yml'
+    branches:
+      - '1-time'
+  workflow_dispatch:
 
 run-name:  ${{ github.event_name }}, branch is ${{ github.headref || github.ref_name }}, ${{ github.run_number }}, @${{ github.actor }}
 
@@ -19,6 +20,9 @@ jobs:
     name: Debug
     runs-on: ubuntu-latest
     steps:
+      - name: echo
+        run: echo "hello branch is ${{ github.ref_name }}"
+
       - name: Print environment variables
         run: env
 
@@ -40,21 +44,21 @@ jobs:
           STEPS_CONTEXT: ${{ toJson(steps) }}
         run: echo "$STEPS_CONTEXT"
 
-      - name: Dump runner context
-        env:
-          RUNNER_CONTEXT: ${{ toJson(runner) }}
-        run: echo "$RUNNER_CONTEXT"
-
-      - name: Dump strategy context
-        env:
-          STRATEGY_CONTEXT: ${{ toJson(strategy) }}
-        run: echo "$STRATEGY_CONTEXT"
-
-      - name: Dump matrix context
-        env:
-          MATRIX_CONTEXT: ${{ toJson(matrix) }}
-        run: echo "$MATRIX_CONTEXT"
-
+#      - name: Dump runner context
+#        env:
+#          RUNNER_CONTEXT: ${{ toJson(runner) }}
+#        run: echo "$RUNNER_CONTEXT"
+#
+#      - name: Dump strategy context
+#        env:
+#          STRATEGY_CONTEXT: ${{ toJson(strategy) }}
+#        run: echo "$STRATEGY_CONTEXT"
+#
+#      - name: Dump matrix context
+#        env:
+#          MATRIX_CONTEXT: ${{ toJson(matrix) }}
+#        run: echo "$MATRIX_CONTEXT"
+#
   build:
     name: Build
     runs-on: ubuntu-latest
