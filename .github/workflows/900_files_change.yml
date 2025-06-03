@@ -4,7 +4,8 @@ name: 900_files_change
 ##  Run only when *.yml changes
 ##  Run when anything changes in .github/workflow directory changes
 
-# seems be OR, not AND
+# act runs, but misses logic
+# githb works.
 on:
   push:
     paths:
