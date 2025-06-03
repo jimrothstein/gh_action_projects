@@ -4,7 +4,6 @@ name: 910_files_change_dorny
 ##  Run only when *.yml changes
 ##  Run when anything changes in .github/workflow directory changes
 
-# seems be OR, not AND
 on:
   push:
     branches:
