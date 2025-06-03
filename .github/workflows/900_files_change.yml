@@ -6,10 +6,11 @@ name: 900_files_change
 
 # seems be OR, not AND
 on:
-  push:
-    branches:
-      - '1-time'
-    paths:  '**/*.yml'
+#  push:
+#    branches:
+#      - '1-time'
+#    paths:  '**/*.yml'
+   workflow_dispatch 
 
 run-name:  ${{ github.event_name }}, branch is ${{ github.headref || github.ref_name }}, ${{ github.run_number }}, @${{ github.actor }}
 
