@@ -15,13 +15,19 @@ jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
-     - uses: dorny/paths-filter@v3
-       id: changes
-       with:
-         filters: |
-           src:
-             - '*'
+      - name: checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+
+      - name: filter
+        uses: dorny/paths-filter@v3
+        id: changes
+        with:
+          filters: |
+            src:
+              - '*'
 
 # run only if some file in 'src' folder was changed
-     - if: steps.changes.outputs.src == 'true'
-       run: ...echo "hello"
+      - if: steps.changes.outputs.src == 'true'
+        run: ...echo "hello"
