@@ -2,7 +2,7 @@
 name: 920_files_change
 
 ## PURPOSE:
-##  Run only when *.yml changes  AND branch = 1-time
+##  Run only when *.yml changes  AND branch matches 
 
 # act runs, but misses logic
 # githb works.
@@ -14,9 +14,10 @@ on:
       - 'dev'
   workflow_dispatch:
 
-run-name:  ${{ github.event_name }}, branch is ${{ github.headref || github.ref_name }}, ${{ github.run_number }}, @${{ github.actor }}
+run-name:  920 on ${{ github.event_name }}, branch is ${{ github.headref || github.ref_name }}, ${{ github.run_number }}, @${{ github.actor }}
 
 ## job:debug runs ONLY if event_name is 'push'
+
 
 jobs:
 
