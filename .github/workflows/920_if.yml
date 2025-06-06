@@ -2,7 +2,8 @@
 name: 920_files_change
 
 ## PURPOSE:
-##  Run only when *.yml changes  AND branch matches 
+##  Run only when *.yml changes  AND branch matches (or workflow-dispatch if exists) 
+## works!!
 
 # act runs, but misses logic
 # githb works.

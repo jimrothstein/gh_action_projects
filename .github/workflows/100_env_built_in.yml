@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+     - name: Set US Eastern timezone
+       run: sudo timedatectl set-timezone America/New_York
+
      - name:  built-in
        run: |
          echo "100_buit_in"
