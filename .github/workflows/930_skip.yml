@@ -1,0 +1,25 @@
+
+name: 930_files_change
+
+
+on:
+  push:
+  workflow_dispatch:
+
+run-name:  930 on ${{ github.event_name }}, branch is ${{ github.headref || github.ref_name }}, ${{ github.run_number }}, @${{ github.actor }}
+
+
+
+jobs:
+  workflow_job:
+    name:  workflow_job_name
+    runs-on:  ubuntu-latest
+    if: >
+      !contains(github.event.commits[0].message, '[skip grammar]')
+        && github.event.pull_request.draft == false
+    steps:
+      - name: echo
+        run: |
+          echo "event must be workflow_dispatch"
+
+

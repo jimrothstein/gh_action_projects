@@ -1,5 +1,7 @@
 name: 300_GITHUB_OUTPUT Example
 
+# works on act
+# rules for using $GITHUB_OUTPUT, in same job
 on:
   workflow_dispatch:
 
@@ -7,7 +9,7 @@ jobs:
   demonstrate-output:
     runs-on: ubuntu-latest
     steps:
-      - name: Step 1: Generate a dynamic filename
+      - name: Step 1 Generate a dynamic filename
         id: generate_file # Assign an ID to this step to reference its outputs later
         run: |
           # Simulate generating a filename (e.g., based on date/time)
@@ -21,7 +23,7 @@ jobs:
           # The key is 'filename', and the value is the content of $DYNAMIC_FILENAME.
           echo "filename=$DYNAMIC_FILENAME" >> "$GITHUB_OUTPUT"
 
-      - name: Step 2: Use the generated filename
+      - name: Step 2 Use the generated filename
         # Access the output from 'generate_file' step using its ID and output name
         run: |
           # Accessing the output: steps.<step_id>.outputs.<output_name>
@@ -33,7 +35,7 @@ jobs:
           echo "This is content for $RECEIVED_FILENAME" > "$RECEIVED_FILENAME"
           echo "Created file: $(ls -l $RECEIVED_FILENAME)"
 
-      - name: Step 3: Another step using the filename
+      - name: Step 3 Another step using the filename
         # You can use the output in multiple subsequent steps
         run: |
           ANOTHER_FILENAME="${{ steps.generate_file.outputs.filename }}"
