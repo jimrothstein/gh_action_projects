@@ -1,5 +1,7 @@
 
-name: 930_files_change
+name: 930_skip_
+
+## PURPOSE:  skips job if comment contains '[skip grammar]'
 
 
 on:
