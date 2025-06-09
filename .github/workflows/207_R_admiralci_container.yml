@@ -1,7 +1,7 @@
-name:  205 rocker 
+name:  207 admiralci_containers
 
-## USE  rocker,  but no git?, otherwise works
-run-name: 205 dependencies
+## 
+run-name: 207 dependencies
 
 on:
   workflow_dispatch:
@@ -11,7 +11,8 @@ jobs:
   import-data:
     runs-on: ubuntu-latest
     container:
-      image: rocker/r-ver:latest
+#      image: rocker/r-ver:latest
+      image: "ghcr.io/pharmaverse/admiralci-4.2:latest"
 
     steps:
       - name: Check out repository
