@@ -1,6 +1,6 @@
 name:  207 admiralci_containers
 
-## 
+## works,  again git missing, but admiralci based on rocker 
 run-name: 207 dependencies
 
 on:

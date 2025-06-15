@@ -4,14 +4,15 @@ name: 920_files_change
 ## PURPOSE:
 ##  Run only when *.yml changes  AND branch = 1-time
 
+## when testing, avoid on push
 # act runs, but misses logic
 # githb works.
 on:
-  push:
-    paths:
-      - '**/*.yml'
-    branches:
-      - '1-time'
+#  push:
+#    paths:
+#      - '**/*.yml'
+#    branches:
+#      - '1-time'
   workflow_dispatch:
 
 run-name:  ${{ github.event_name }}, branch is ${{ github.headref || github.ref_name }}, ${{ github.run_number }}, @${{ github.actor }}
