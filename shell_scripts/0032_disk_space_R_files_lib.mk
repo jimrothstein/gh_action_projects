@@ -14,7 +14,7 @@
 SHELL := /bin/zsh
 R_packages_DIR := ~/R/
 
-.PHONY:   version fdisk mount lsblk blkid fstab
+.PHONY:   version fdisk mount lsblk blkid fstab largest
 
 help:
 	@echo "sudo apt remove pkg1 pkg2 pgk3"

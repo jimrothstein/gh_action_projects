@@ -35,4 +35,4 @@ jobs:
 
       - name: run make
         run: |
-          make -f shell_scripts/032_disk_space_R_files_lib.mk    largest
+          make -f shell_scripts/032_disk_space_R_files_lib.mk  largest
