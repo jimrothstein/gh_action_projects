@@ -1,5 +1,7 @@
 
-name: 310_run_make file
+name: 920_run_make file
+## use make file, target is largest
+## runs locally, but gha can't find file
 
 on:
 #  push:
@@ -32,6 +34,10 @@ jobs:
       - name: install make
         run: |
           sudo apt install make
+
+      - name: list
+        run: |
+          ls -la *
 
       - name: run make
         run: |
