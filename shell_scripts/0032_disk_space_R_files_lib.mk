@@ -1,4 +1,5 @@
 #make -f disk_space.mk
+# make requires TABs, whereas GHA and R, usually, wants spaces
 
 
 # ============================
@@ -31,8 +32,6 @@ largest_files:
 	# list files, size > 20M
 	ls -lh $(R_packages_DIR)/**/*(.Lm+20)
 
-list_google_files:
-	ls /var/host/media/fuse/drivefs-34a039d82ac00e8c8d62cd30042f3741/root/ | less
 
 ls_process:
 	# separate process for each file found
