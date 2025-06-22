@@ -26,6 +26,8 @@ jobs:
         run:  Rscript -e 'pak::pkg_install("diffdf")'  # default is binary
 
 
+      - name:  install git (sudo requires no passwd)
+        run:  sudo apt install git -y
 
 #      - name: Set up R
 #        if: ${{ !env.ACT }}  # do not on act
