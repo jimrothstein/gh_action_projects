@@ -17,10 +17,14 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name:  install binary pak
+      - name:  install binary pak - WoRKS!
         run:  Rscript -e 'install.packages("pak",
            repos = sprintf("https://r-lib.github.io/p/pak/stable/%s/%s/%s",
            .Platform$pkgType, R.Version()$os, R.Version()$arch))'
+
+       - name:  install diffdf binary
+         run:  Rscript -e 'pak::pak_install("diffdf")  # default is binary
+
 
 
 #      - name: Set up R
