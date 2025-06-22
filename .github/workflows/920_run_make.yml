@@ -1,7 +1,9 @@
 
 name: 920_run_make file
+##  FAILS on GHA
 ## use make file, target is largest
 ## runs locally, but gha can't find file
+## change chmod on gha?  make it executable?
 
 on:
 #  push:

@@ -17,6 +17,10 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      - name:  install binary pak 
+        run:  Rscript -e "install.packages("pak", repos = sprintf("https://r-lib.github.io/p/pak/stable/%s/%s/%s", .Platform$pkgType, R.Version()$os, R.Version()$arch))
+
+
 #      - name: Set up R
 #        if: ${{ !env.ACT }}  # do not on act
 #        uses: r-lib/actions/setup-r@v2
