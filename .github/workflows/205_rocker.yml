@@ -23,7 +23,7 @@ jobs:
            .Platform$pkgType, R.Version()$os, R.Version()$arch))'
 
       - name:  install diffdf binary
-        run:  Rscript -e 'pak::pak_install("diffdf")'  # default is binary
+        run:  Rscript -e 'pak::pkg_install("diffdf")'  # default is binary
 
 
 
