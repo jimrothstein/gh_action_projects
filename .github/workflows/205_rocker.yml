@@ -27,7 +27,9 @@ jobs:
 
 
       - name:  install git (sudo requires no passwd)
-        run:  sudo apt-get install git -y
+        run:  |
+          sudo apt update
+          sudo apt-get install git -y
 
 #      - name: Set up R
 #        if: ${{ !env.ACT }}  # do not on act
