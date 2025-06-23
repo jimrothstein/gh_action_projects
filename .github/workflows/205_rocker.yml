@@ -30,6 +30,7 @@ jobs:
 
       - name:  git
         run:  |
+          cd /github/workspace
           git status
 
       - name:  install binary pak - WoRKS!
