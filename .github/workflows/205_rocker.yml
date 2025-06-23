@@ -23,6 +23,11 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      - name: Install git
+        run: |
+         apt-get update
+         apt-get install -y git
+
       - name:  git
         run:  |
           git status
