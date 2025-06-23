@@ -14,7 +14,7 @@ permissions:  read-all
 jobs:
   import-data:
     runs-on: ubuntu-latest
-    env: |
+    env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     container:
       image: rocker/r-ver:latest
