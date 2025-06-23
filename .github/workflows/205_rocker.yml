@@ -24,7 +24,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Confirm repo is checked out
-        run: ls -l
+        run: ls -la
 
       - name: Install git
         run: |
