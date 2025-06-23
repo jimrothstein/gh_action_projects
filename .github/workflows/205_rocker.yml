@@ -9,7 +9,7 @@ on:
   push:
 # pull_request:
 
-permissions:  real-all
+permissions:  read-all
 
 jobs:
   import-data:
