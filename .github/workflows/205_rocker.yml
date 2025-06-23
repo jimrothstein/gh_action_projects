@@ -1,15 +1,19 @@
+## works, but can not isntall git
 name:  205 rocker 
 
 ## USE  rocker,  but no git?, otherwise works
 run-name: 205 dependencies
 
 on:
-  workflow_dispatch:
-#  pull_request:
+  #workflow_dispatch:
+  push:
+# pull_request:
 
 jobs:
   import-data:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     container:
       image: rocker/r-ver:latest
 
@@ -22,19 +26,26 @@ jobs:
            repos = sprintf("https://r-lib.github.io/p/pak/stable/%s/%s/%s",
            .Platform$pkgType, R.Version()$os, R.Version()$arch))'
 
-      - name:  install diffdf binary
+      - name:  install diffdf binary  -- works
         run:  Rscript -e 'pak::pkg_install("diffdf")'  # default is binary
 
 
-      - name:  install git (sudo requires no passwd)
-        run:  |
-          sudo apt update
-          sudo apt-get install git -y
+## ------------------------  git fails 
+
+#      - name:  install git (sudo requires no passwd)
+#        run:  |
+#          sudo apt update
+#          sudo apt-get install git -y
+
+      - name: Extra deps
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get install -y autoconf automake git global libgit2-dev libglpk-dev
 
 #      - name: Set up R
 #        if: ${{ !env.ACT }}  # do not on act
 #        uses: r-lib/actions/setup-r@v2
-#        with:
+#        with/:
 #          r-version: 'latest'
 #          use-public-rspm: true
 #
@@ -42,11 +53,7 @@ jobs:
 #        if: ${{ !env.ACT }}
 #        uses: r-lib/actions/setup-r-dependencies@v2
 #        with:
-#          dependencies: hard
-
-
-      - name: Run script
-        run: Rscript -e 'source("R/01_first.R")'
+#          dependencies: hardk
 
       - name: Commit results
         run: |

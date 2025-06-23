@@ -1,4 +1,4 @@
-name: Test
+name: 120_files
 
 ## when testing avoid push (runs everytime !)
 on:
