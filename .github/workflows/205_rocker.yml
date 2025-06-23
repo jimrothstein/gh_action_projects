@@ -9,6 +9,8 @@ on:
   push:
 # pull_request:
 
+permissions:  real-all
+
 jobs:
   import-data:
     runs-on: ubuntu-latest
