@@ -23,6 +23,10 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      - name:  git
+        run:  |
+          git status
+
       - name:  install binary pak - WoRKS!
         run:  Rscript -e 'install.packages("pak",
            repos = sprintf("https://r-lib.github.io/p/pak/stable/%s/%s/%s",
@@ -39,10 +43,10 @@ jobs:
 #          sudo apt update
 #          sudo apt-get install git -y
 
-      - name: Extra deps
-        if: runner.os == 'Linux'
-        run: |
-          sudo apt-get install -y autoconf automake git global libgit2-dev libglpk-dev
+#      - name: Extra deps
+#        if: runner.os == 'Linux'
+#        run: |
+#          sudo apt-get install -y autoconf automake git global libgit2-dev libglpk-dev
 
 #      - name: Set up R
 #        if: ${{ !env.ACT }}  # do not on act
