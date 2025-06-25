@@ -1,12 +1,12 @@
 ## works, but can not isntall git
 name:  205 rocker 
 
-## USE  rocker,  git does install, but something wrong with git boundary - fails
+## USE  rocker,  but no git?, otherwise works
 run-name: 205 dependencies
 
 on:
-  workflow_dispatch:
-#  push:
+  #workflow_dispatch:
+  push:
 # pull_request:
 
 permissions:  read-all
@@ -25,11 +25,10 @@ jobs:
         with:
           fetch-depth: 0
 
-# FAILS HERE;  refuses to see git and says not in git boundary.  FAILS
       - name: Confirm repo is checked out
         run: ls -la
 
-      - name: Install git - WORKS, note no need for sudo
+      - name: Install git
         run: |
          apt-get update
          apt-get install -y git
