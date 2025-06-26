@@ -24,11 +24,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-## FAILS,  what directory am I in?
       - name: ls
         run:  |
           echo "RUNNING:  job-3"
-          ls -la 
+          ls -la *.yml
 
       - name:  git
         run: git status
@@ -38,7 +37,7 @@ jobs:
       - name:  diff
         run:  |
           echo "RUNNING git diff"
-          git diff
+          git diff HEAD~1
 
       - name:  diff last
         run: |
