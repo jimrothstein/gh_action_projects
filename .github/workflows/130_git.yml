@@ -27,7 +27,7 @@ jobs:
       - name: ls
         run:  |
           echo "RUNNING:  job-3"
-          ls -la *.yml
+          ls -la **/*.yml
 
       - name:  git
         run: git status
