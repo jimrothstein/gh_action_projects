@@ -3,7 +3,7 @@ name: Check Git Version
 ## WORKS on github  b/c git is already there (with ubuntu-latest)
 ## FAILS on act (see 132)
 on:
-  push:
+##  push:
 
 
 jobs:

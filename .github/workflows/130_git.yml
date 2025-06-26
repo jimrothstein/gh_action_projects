@@ -37,9 +37,9 @@ jobs:
           git diff
 
       - name:  diff last
-          run: |
-            echo "RUNNING git diff ;  1= change"
-            git diff  --exit-code | $?
+        run: |
+          echo "RUNNING git diff ;  1= change"
+          git diff  --exit-code | $?
 
 
 # NEEDS git installed !
