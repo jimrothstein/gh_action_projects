@@ -21,6 +21,10 @@ jobs:
           git --version
           echo "Git is indeed installed and available."
 
+      - name: Checkout
+        uses: actions/checkout@v4
+
+## FAILS,  what directory am I in?
       - name: ls
         run:  |
           echo "RUNNING:  job-3"
