@@ -1,6 +1,6 @@
 name: Check Git Version
 
-## WORKS on github  b/c git is already there (with ubuntu-latest)
+## WORKS on github
 ## FAILS on act (see 132)
 on:
   push:
