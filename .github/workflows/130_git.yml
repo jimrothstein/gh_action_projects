@@ -3,6 +3,8 @@ name: 130_git
 ##  RUN on github, not act
 ##  compare 2 commits, diff?
 
+run-name: Hello  Try ${{ github.run_number }}, @${{ github.actor }}
+
 on:
   push:
   # workflow_dispatch:
