@@ -33,6 +33,8 @@ jobs:
          apt-get update
          apt-get install -y git
 
+# error, git sees NO git repo	
+
       - name:  git
         run: git status
         working-directory:  ${{ github.workspace }}
