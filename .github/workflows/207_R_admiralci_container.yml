@@ -1,6 +1,5 @@
 name:  207 admiralci_containers
 
-## works,  again git missing, but admiralci based on rocker 
 run-name: 207 dependencies
 
 on:
@@ -11,8 +10,9 @@ jobs:
   import-data:
     runs-on: ubuntu-latest
     container:
+      image: "ghcr.io/pharmaverse/admiralci-release:latest"
 #      image: rocker/r-ver:latest
-      image: "ghcr.io/pharmaverse/admiralci-4.2:latest"
+# SEE; https://pharmaverse.github.io/admiralci/articles/common_structure.html
 
     steps:
       - name: Check out repository
@@ -31,11 +31,11 @@ jobs:
 #        with:
 #          dependencies: hard
 
-
       - name: Run script
         run: Rscript -e 'source("R/01_first.R")'
 
       - name: Commit results
+        if: ${{ 2 > 3 }}
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"

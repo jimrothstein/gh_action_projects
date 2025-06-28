@@ -1,7 +1,6 @@
 ## works, but can not isntall git
 name:  205 rocker 
 
-## USE  rocker,  but no git?, otherwise works
 run-name: 205 dependencies
 
 on:
@@ -26,34 +25,30 @@ jobs:
           fetch-depth: 0
 
       - name: Confirm repo is checked out
-        run: ls -la
+        run: |
+          echo "RUNNING ls"
+          ls -la
 
       - name: Install git
         run: |
-         apt-get update
-         apt-get install -y git
-
-# error, git sees NO git repo	
+          echo "INSTALL git;  github.workspace = ${{ github.workspace }}"
+          apt-get update
+          apt-get install -y git
+#  seems to require apt-get update be run
 
       - name:  git
         run: git status
-        working-directory:  ${{ github.workspace }}
 
       - name:  install binary pak - WoRKS!
+        if:  ${{ 2 > 3 }}
         run:  Rscript -e 'install.packages("pak",
            repos = sprintf("https://r-lib.github.io/p/pak/stable/%s/%s/%s",
            .Platform$pkgType, R.Version()$os, R.Version()$arch))'
 
       - name:  install diffdf binary  -- works
+        if: ${{ 2 > 3 }}
         run:  Rscript -e 'pak::pkg_install("diffdf")'  # default is binary
 
-
-## ------------------------  git fails 
-
-#      - name:  install git (sudo requires no passwd)
-#        run:  |
-#          sudo apt update
-#          sudo apt-get install git -y
 
 #      - name: Extra deps
 #        if: runner.os == 'Linux'
@@ -71,9 +66,10 @@ jobs:
 #        if: ${{ !env.ACT }}
 #        uses: r-lib/actions/setup-r-dependencies@v2
 #        with:
-#          dependencies: hardk
+#          dependencies: hard
 
       - name: Commit results
+        if: ${{ 2 > 3 }}
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
