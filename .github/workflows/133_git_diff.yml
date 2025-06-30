@@ -1,0 +1,77 @@
+name: 132_git_diff.yml
+
+##  RUN on github, not act
+##  compare 2 commits, diff?
+
+run-name: 132_git_diff ${{ github.run_number }}, @${{ github.actor }}
+
+on:
+  #push:
+  workflow_dispatch:
+
+
+jobs:
+  check_git:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Install Git (REQUIRED FOR THIS SPECIFIC DOCKER IMAGE)
+        if: ${{ env.ACT }}  # install if act
+        run: |
+          echo "On act... installing git, suppress output"
+          apt-get update > /dev/null 2>&1 # Update package lists
+          apt-get install -y git > /dev/null 2>&1 # Install git
+
+      - name: Verify Git is installed and show version
+        run: |
+          echo "Running 'git --version' directly:"
+          git --version
+          echo "Git is indeed installed and available."
+
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+# entire history
+
+      - name: ls
+        run:  |
+          echo "RUNNING:  ls -la **/*.yml <SNIP>"
+          #ls -la **/*.yml
+
+      - name:  git
+        run:
+          echo "git status"
+          git status
+        #working-directory:  ${{ github.workspace }}
+
+
+      - name:  diff
+        run:  |
+          echo "RUNNING git diff"
+          git diff HEAD
+
+      - name:  diff last
+        run: |
+          echo "RUNNING git exit-code;  1= change"
+          git diff HEAD --exit-code | $?
+
+
+# NEEDS git installed !
+      - name: git ls-files
+        if: ${{ 2 > 4 }}
+        run:  git ls-files | grep 'yml'
+
+
+#      - name: bash
+#        run: |
+#          # If there are any unstaged or untracked files in 'dist/', then the action wasn't packaged properly
+#          if git diff --name-only | grep '^dist/' || git ls-files --other --exclude-standard | grep '^dist/'; then
+#            echo "You didn't package the action properly before pushing to remote." \
+#            echo "Always run 'yarn all' before staging a commit."
+#            echo "Below are the modified files in 'dist/' after running 'yarn && rm -rf dist/ && yarn all':"
+#            git diff --name-only | grep '^dist/'
+#            git ls-files --other --exclude-standard | grep '^dist/'
+#            exit 1
+#          fi

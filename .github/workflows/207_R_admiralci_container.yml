@@ -1,5 +1,7 @@
 name:  207 admiralci_containers
 
+## GHA:  admiralci image: works !
+## act:  fails
 run-name: 207 dependencies
 
 on:
