@@ -1,13 +1,13 @@
-name: 132_git_diff.yml
+name: 133_git_diff.yml
 
 ##  RUN on github, not act
 ##  compare 2 commits, diff?
 
-run-name: 132_git_diff ${{ github.run_number }}, @${{ github.actor }}
+run-name: 133_git_diff ${{ github.run_number }}, @${{ github.actor }}
 
 on:
-  #push:
-  workflow_dispatch:
+  push:
+  # workflow_dispatch:
 
 
 jobs:

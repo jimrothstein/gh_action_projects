@@ -2,7 +2,8 @@ name: 002_render_README.Rmd
 
 run-name:  run_name is render
 
-on:  [workflow_dispatch]
+on:
+  workflow_dispatch
 
 permissions:
   contents:  write
@@ -19,7 +20,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install packages
-        uses: r-lib/actions/setup-r-dependencies@v2 
+        uses: r-lib/actions/setup-r-dependencies@v2
         with:
           packages: |
             any::readr
@@ -42,10 +43,10 @@ jobs:
 #          repos = "https://packagemanager.posit.co/cran/__linux__/noble/latest")'
 
 
-       - name: Render Quarto Project
-         uses: quarto-dev/quarto-actions/render@v2
-         with:
-           to: html # If set, it will be equivalent to `quarto render --to html`
+      - name: Render Quarto Project
+        uses: quarto-dev/quarto-actions/render@v2
+        with:
+          to: html # If set, it will be equivalent to `quarto render --to html`
 
       - name:  install knitr
         run:  Rscript -e 'install.packages("knitr")'
@@ -56,12 +57,12 @@ jobs:
       - name: Render Quarto document
         run: |
           quarto render README.Rmd  --to gfm --output README.md
-	  quarto render README.Rmd 
+          quarto render README.Rmd 
 
 #quarto render 280_emacs_notes.qmd --to gfm --output 280_emacs_notes.md
 #quarto render 250_quarto_knitr_SCSS_NOTES.qmd --to gfm --output 250_quarto_knitr_SCSS_NOTES.md
 
-    # Commit and push changes to README.md
+# Commit and push changes to README.md
       - name: Commit README.md
         run: |
           git config --global user.name "github-actions[bot]"
@@ -71,5 +72,3 @@ jobs:
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-
