@@ -27,3 +27,9 @@ jobs:
           echo "Running 'git --version' directly:"
           git --version
           echo "Git is indeed installed and available."
+
+      - name:  any  changes?
+        run: |
+          echo " 1= changes"
+          git diff --exit-code HEAD~ 132_git_using_act.yml | echo $?
+        
