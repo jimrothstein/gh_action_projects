@@ -2,6 +2,9 @@ name: 132_	Check Git Version (for act with node:16-buster-slim)
 
 
 ## WORKS on act
+## use:   act -W workflow_dispatch .github/workflows/<file.yml> -r
+## -W run this specific yml (default is run ALL)
+## -r reuse container
 
 ## Unlike ubuntu-latest, act uses its own container.
 ##  This container does NOT have act.
@@ -39,6 +42,7 @@ jobs:
         run: |
           cd /home/jim/code/github_actions_project
           git status
+          git log
           echo " 1= changes"
           git diff --exit-code HEAD~ .github/workflows/132_git_using_act.yml | echo $?
         
