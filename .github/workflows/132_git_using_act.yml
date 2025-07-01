@@ -38,5 +38,5 @@ jobs:
           cd /home/jim/code/github_actions_project
           git status
           echo " 1= changes"
-          git diff --exit-code HEAD~ 132_git_using_act.yml | echo $?
+          git diff --exit-code HEAD~ .github/workflows/132_git_using_act.yml | echo $?
         
