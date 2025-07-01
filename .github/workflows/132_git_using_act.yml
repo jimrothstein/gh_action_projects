@@ -7,6 +7,7 @@ name: 132_	Check Git Version (for act with node:16-buster-slim)
 ##  This container does NOT have act.
 ##  Therefore, to use act in its default (node:16-buster-slim).  Explicitly install git is REQUIRED for this act.
 
+
 on:
   workflow_dispatch:
 
@@ -17,6 +18,10 @@ jobs:
       image: node:16-buster-slim
 
     steps:
+
+      - name: Check out repository
+        uses: actions/checkout@v4
+
       - name: Install Git (REQUIRED FOR THIS SPECIFIC DOCKER IMAGE)
         run: |
           apt-get update # Update package lists
@@ -30,6 +35,8 @@ jobs:
 
       - name:  any  changes?
         run: |
+          cd /home/jim/code/github_actions_project
+          git status
           echo " 1= changes"
           git diff --exit-code HEAD~ 132_git_using_act.yml | echo $?
         
