@@ -19,6 +19,10 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      - name: time
+        run: |
+          echo "DATE=$(date)" >> $GITHUB_ENV
+
       - name: Adding markdown
         run: |
           echo '### Hello world! ' >> $GITHUB_STEP_SUMMARY
@@ -26,6 +30,7 @@ jobs:
 
       - name: more otuput
         run: |
+          echo "$DATE"
           echo "**more output**" >> $GITHUB_STEP_SUMMARY
           echo " end "
 
@@ -39,6 +44,7 @@ jobs:
              :heavy_check_mark: @ $(date)
              - item 1
              - item 2
+             - run number: ${{github.run_number}} 
              - run id: ${{github.run_id}}
              - event: ** ${{github.event_name}} **
              - attempt #: **${{github.run_attempt}}**
