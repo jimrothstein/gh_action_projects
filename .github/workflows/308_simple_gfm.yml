@@ -37,10 +37,10 @@ jobs:
           message: |
              I am a bot.
              :heavy_check_mark:
-             _(event **${{ github.event_name }}** / attempt **${{ github.run_attempt }}**)_
              - item 1
              - item 2
-             - event:  ${{github.event_name}}
+             - event: ** ${{github.event_name}} **
+	     - attempt #: ** ${{github.run_attempt}}**
 
 # prints to github console, not to the PR
       - name: check outputs
