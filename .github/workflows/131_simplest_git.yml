@@ -1,0 +1,18 @@
+name: Check Git Version
+
+## WORKS on github  b/c git is already there (with ubuntu-latest)
+## FAILS on act (see 132)
+on:
+  workflow_dispatch:
+##  push:
+
+
+jobs:
+  check_git:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify Git is installed and show version
+        run: |
+          echo "Running 'git --version' directly:"
+          git --version
+          echo "Git is indeed installed and available."

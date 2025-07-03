@@ -1,10 +1,11 @@
-name: Test
+name: 120_files
 
+## when testing avoid push (runs everytime !)
 on:
   pull_request:
-  push:
-    branches:
-      - dev
+#  push:
+#    branches:
+#      - dev
   workflow_dispatch:
 
 run-name:  ${{ github.event_name }}, branch is ${{ github.headref || github.ref_name }}, ${{ github.run_number }}, @${{ github.actor }}

@@ -2,7 +2,9 @@
 
 name: Parse JSON Output Example
 
-on: [push]
+# TEST:  avoid push
+on:
+#  push
 
 jobs:
   process_data:

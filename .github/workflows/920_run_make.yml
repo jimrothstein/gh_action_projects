@@ -1,0 +1,46 @@
+
+name: 920_run_make file
+##  FAILS on GHA
+## use make file, target is largest
+## runs locally, but gha can't find file
+## change chmod on gha?  make it executable?
+
+on:
+#  push:
+#    paths:
+#      - '**/*.yml'
+#    branches:
+#      - '1-time'
+  workflow_dispatch:
+
+run-name:  ${{ github.event_name }}, branch is ${{ github.headref || github.ref_name }}, ${{ github.run_number }}, @${{ github.actor }}
+
+## job:debug runs ONLY if event_name is 'push'
+
+jobs:
+
+# runs only if event is workflow_dispatch
+
+  workflow_job:
+    name:  workflow_job_name
+    runs-on:  ubuntu-latest
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    steps:
+      - name: echo
+        run: |
+          echo "event must be workflow_dispatch"
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: install make
+        run: |
+          sudo apt install make
+
+      - name: list
+        run: |
+          ls -la *
+
+      - name: run make
+        run: |
+          make -f shell_scripts/032_disk_space_R_files_lib.mk  largest

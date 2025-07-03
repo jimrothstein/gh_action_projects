@@ -1,0 +1,49 @@
+name: 132_	Check Git Version (for act with node:16-buster-slim)
+
+
+## WORKS on act
+## use:   act -W workflow_dispatch .github/workflows/<file.yml> -r
+## -W run this specific yml (default is run ALL)
+## -r reuse container
+
+## Unlike ubuntu-latest, act uses its own container.
+##  This container does NOT have act.
+##  Therefore, to use act in its default (node:16-buster-slim).  Explicitly install git is REQUIRED for this act.
+
+
+on:
+  workflow_dispatch:
+
+jobs:
+  check_git:
+    runs-on: ubuntu-latest
+    container: # <--- This is why act used node:16-buster-slim (has no git)
+      image: node:16-buster-slim
+
+    steps:
+
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Git (REQUIRED FOR THIS SPECIFIC DOCKER IMAGE)
+        run: |
+          apt-get update # Update package lists
+          apt-get install -y git # Install git
+
+      - name: Verify Git is installed and show version
+        run: |
+          echo "Running 'git --version' directly:"
+          git --version
+          echo "Git is indeed installed and available."
+
+      - name:  any  changes?
+        run: |
+          cd /home/jim/code/github_actions_project
+          git status
+          git log
+          echo " 1= changes"
+          git diff --exit-code HEAD~ HEAD .github/workflows/132_git_using_act.yml
+          echo $?    # works on NEW line 
+        
