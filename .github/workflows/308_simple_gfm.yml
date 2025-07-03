@@ -21,22 +21,3 @@ jobs:
         run: |
           echo '### Hello world! ' >> $GITHUB_STEP_SUMMARY
           echo "   _(event **${{ github.event_name }}** / attempt **${{ github.run_attempt }}**)_"
-
-      - name: check outputs
-        if ${{ 2 > 3 }}
-        run: |
-          echo "id : ${{ steps.PR_comment.outputs.id }}"
-          echo "body : ${{ steps.PR_comment.outputs.body }}"
-          echo "html-url : ${{ steps.PR_comment.outputs.html-url }}"
-          echo ":heavy-check_mark:"
-
-
-      - name: PR comment with file
-        uses: thollander/actions-comment-pull-request@v3
-        if: ${{ 2 > 3}}
-        id: PR_comment
-        with:
-          message: |
-             I am a bot.
-             :heavy_check_mark:
-             _(event **${{ github.event_name }}** / attempt **${{ github.run_attempt }}**)_
