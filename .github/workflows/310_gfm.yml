@@ -26,6 +26,7 @@ jobs:
           git push origin || echo "No changes to commit"
 
       - name: Commit
+        if: ${{ 3 > 4 }}
         run: |
           echo "user = bot"
           git config --global user.name "github-actions[bot]"
