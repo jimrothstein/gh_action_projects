@@ -22,6 +22,7 @@ jobs:
           echo '### Hello world! ' >> $GITHUB_STEP_SUMMARY
           echo "   _(event **${{ github.event_name }}** / attempt **${{ github.run_attempt }}**)_"
 
-      - name: more otuput 
+      - name: more otuput
+        echo "" >> $GITHUB_STEP_SUMMARY
         echo "**more output** >> $GITHUB_STEP_SUMMARY
 
