@@ -6,6 +6,8 @@ on:
   workflow_dispatch:
   pull_request:
 
+permissions:
+  pull-requests: write
 
 jobs:
   job1:
