@@ -40,6 +40,7 @@ jobs:
              _(event **${{ github.event_name }}** / attempt **${{ github.run_attempt }}**)_
              - item 1
              - item 2
+             - event:  ${{github.event_name}}
 
 # prints to github console, not to the PR
       - name: check outputs
