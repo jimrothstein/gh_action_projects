@@ -25,3 +25,4 @@ jobs:
       - name: more otuput
         run: |
           echo "**more output** >> $GITHUB_STEP_SUMMARY
+	  echo " end "
