@@ -36,11 +36,18 @@ jobs:
         with:
           message: |
              I am a bot.
-             :heavy_check_mark:
+             :heavy_check_mark: @ $(date)
              - item 1
              - item 2
+	     - run id: ${{github.run_id}}
              - event: ** ${{github.event_name}} **
-	     - attempt #: ** ${{github.run_attempt}}**
+             - attempt #: ** ${{github.run_attempt}}**
+             echo "Run id = $GITHUB_RUN_ID"
+             echo "Run attempt = $GITHUB_RUN_ATTEMPT"
+             echo "Run number = $GITHUB_RUN_NUMBER"
+             echo "ACTOR = $GITHUB_ACTOR"
+             echo "OS = $RUNNER_OS"
+             echo "EVENT = $GITHUB_EVENT_NAME"
 
 # prints to github console, not to the PR
       - name: check outputs
