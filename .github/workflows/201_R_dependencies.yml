@@ -4,7 +4,7 @@ run-name: 201 dependencies
 
 on:
   workflow_dispatch:
-  pull_request:
+#  pull_request:
 
 jobs:
   import-data:
