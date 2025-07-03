@@ -38,7 +38,10 @@ jobs:
              I am a bot.
              :heavy_check_mark:
              _(event **${{ github.event_name }}** / attempt **${{ github.run_attempt }}**)_
+             - item 1
+             - item 2
 
+# prints to github console, not to the PR
       - name: check outputs
         run: |
           echo "id : ${{ steps.PR_comment.outputs.id }}"
