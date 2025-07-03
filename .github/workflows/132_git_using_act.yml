@@ -45,5 +45,5 @@ jobs:
           git log
           echo " 1= changes"
           git diff --exit-code HEAD~ HEAD .github/workflows/132_git_using_act.yml
-          echo $?
+          echo $?    # works on NEW line 
         
