@@ -38,3 +38,9 @@ jobs:
              I am a bot.
              :heavy_check_mark:
              _(event **${{ github.event_name }}** / attempt **${{ github.run_attempt }}**)_
+
+      - name: check outputs
+        run: |
+          echo "id : ${{ steps.PR_comment.outputs.id }}"
+          echo "body : ${{ steps.PR_comment.outputs.body }}"
+          echo "html-url : ${{ steps.PR_comment.outputs.html-url }}"
