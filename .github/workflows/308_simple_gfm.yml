@@ -28,3 +28,13 @@ jobs:
         run: |
           echo "**more output**" >> $GITHUB_STEP_SUMMARY
           echo " end "
+
+
+      - name: PR comment with file
+        uses: thollander/actions-comment-pull-request@v3
+        id: PR_comment
+        with:
+          message: |
+             I am a bot.
+             :heavy_check_mark:
+             _(event **${{ github.event_name }}** / attempt **${{ github.run_attempt }}**)_
