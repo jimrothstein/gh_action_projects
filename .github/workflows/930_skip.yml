@@ -5,7 +5,11 @@ name: 930_skip_
 
 
 on:
+<<<<<<< HEAD
+  push:
+=======
 #  push:
+>>>>>>> main
   workflow_dispatch:
 
 run-name:  930 on ${{ github.event_name }}, branch is ${{ github.headref || github.ref_name }}, ${{ github.run_number }}, @${{ github.actor }}
@@ -22,6 +26,10 @@ jobs:
     steps:
       - name: echo
         run: |
+<<<<<<< HEAD
+          echo "event must be workflow_dispatch"
+=======
           echo "bye"
+>>>>>>> main
 
 

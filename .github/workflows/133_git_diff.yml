@@ -6,8 +6,8 @@ name: 133_git_diff.yml
 run-name: 133_git_diff ${{ github.run_number }}, @${{ github.actor }}
 
 on:
-  push:
-  # workflow_dispatch:
+  #push:
+  workflow_dispatch:
 
 
 jobs:
@@ -60,13 +60,9 @@ jobs:
 
       - name:  diff HEAD
         run: |
-          echo "RUNNING git diff HEAD exit-code;  1= change"
-          git diff HEAD --exit-code | echo $?
-
-      - name:  diff HEAD
-        run: |
           echo "RUNNING git diff HEAD HEAD~ exit-code;  1= change"
-          git diff HEAD HEAD~ --exit-code | echo $?
+          git diff --exit-code HEAD~ HEAD --exit-code
+	  echo "Result $?"
 
       - name: Display diff for the current push
         if: ${{ github.event_name == 'push' }} # Only runs for push events

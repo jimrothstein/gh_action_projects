@@ -10,12 +10,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+     - name: get time
+       run: date
+
      - name:  built-in
        run: |
          echo "100_buit_in"
          echo "SHA = ${{ env.GITHUB_SHA }}"
 
-     - name:  print
+     - name:  print1
        run: |
          echo "Run id = $GITHUB_RUN_ID"
          echo "Run attempt = $GITHUB_RUN_ATTEMPT"
@@ -23,3 +26,31 @@ jobs:
          echo "ACTOR = $GITHUB_ACTOR"
          echo "OS = $RUNNER_OS"
          echo "EVENT = $GITHUB_EVENT_NAME"
+
+     - name:  print2
+       run: |
+         echo "value = dog " >> "$GITHUB_OUTPUT"
+         echo "Run id = $GITHUB_RUN_ID"
+         echo "Run attempt = $GITHUB_RUN_ATTEMPT"
+         echo "Run number = $GITHUB_RUN_NUMBER"
+         echo "ACTOR = $GITHUB_ACTOR"
+         echo "OS = $RUNNER_OS"
+         echo "EVENT = $GITHUB_EVENT_NAME"
+         echo "### Hello world! :rocket:" >> $GITHUB_STEP_SUMMARY
+
+
+     - name:  print3
+       run: |
+         echo $GITHUB_OUTPUT
+
+  job2:
+    runs-on: ubuntu-latest
+    needs: [job1]
+
+    steps:
+     - name: get time
+       run: date
+
+     - name:  output
+       run: |
+         echo $GITHUB_OUTPUT
