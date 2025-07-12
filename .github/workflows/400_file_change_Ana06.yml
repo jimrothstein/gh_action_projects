@@ -1,0 +1,39 @@
+# Purpose:   Catch a change in certain files
+
+# REF:  https://github.com/Ana06/get-changed-files
+# REF:  https://github.com/actions/starter-workflows/blob/main/ci/blank.yml
+
+name: 01_changed_file
+
+on:
+  # Triggers the workflow on push or pull request events but only for the $default-branch branch
+  #push:
+  #  branches: [ $default-branch ]
+  #pull_request:
+  #  branches: [ $default-branch ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  step1:
+    task1: minimum
+    runs-on: ubuntu-latest 
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Run script
+      run: |
+        echo "Hello, world!"
+        echo "Add other actions to build,"
+
+# any yml, but NOT in .github
+    - name- uses: Ana06/get-changed-files@v2.3.0
+      with:
+        filter: |
+          *.yml
+          !.github/*/*.yml 
+
+ 
+ 
+

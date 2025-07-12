@@ -53,6 +53,10 @@ jobs:
           echo "RUNNING git diff"
           git diff HEAD
 
+      - name: list commits
+        run: |
+          git log --oneline -5 --pretty=format:'%h %ar'
+
       - name:  diff HEAD~
         run: |
           echo "RUNNING git diff HEAD~ exit-code;  1= change"
@@ -62,7 +66,7 @@ jobs:
         run: |
           echo "RUNNING git diff HEAD HEAD~ exit-code;  1= change"
           git diff --exit-code HEAD~ HEAD --exit-code
-	  echo "Result $?"
+          echo "Result $?"
 
       - name: Display diff for the current push
         if: ${{ github.event_name == 'push' }} # Only runs for push events
