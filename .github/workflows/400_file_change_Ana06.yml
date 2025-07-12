@@ -1,6 +1,7 @@
 # Purpose:   Catch a change in certain files
 
 # REF:  https://github.com/Ana06/get-changed-files
+# FAILS on ACT, to test use 'act push -W....'
 # RUNS ONLY ON GITHUB!
 
 name: 01_changed_file
