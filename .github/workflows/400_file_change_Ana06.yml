@@ -8,8 +8,7 @@ name: 01_changed_file
 
 on:
   push:
-on:
-  pull-requst
+  pull-request
 
   #  branches: [ $default-branch ]
   #pull_request:
@@ -30,10 +29,10 @@ jobs:
         echo "Add other actions to build,"
 
 ## any yml, but NOT in .github
-     - uses: Ana06/get-changed-files@v2.3.0
-       with:
-         filter: |
-           '*'
+    - uses: Ana06/get-changed-files@v2.3.0
+      with:
+        filter: '*'
+
 # for NOT !.github/*/*.yml 
 
     - id: files
