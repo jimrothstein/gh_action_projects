@@ -8,7 +8,7 @@ name: 01_changed_file
 
 on:
   push:
-  pull-request
+  pull_request:
 
   #  branches: [ $default-branch ]
   #pull_request:
