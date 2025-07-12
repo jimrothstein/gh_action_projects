@@ -1,12 +1,14 @@
 # Purpose:   Catch a change in certain files
 
 # REF:  https://github.com/Ana06/get-changed-files
-# REF:  https://github.com/actions/starter-workflows/blob/main/ci/blank.yml
+# RUNS ONLY ON GITHUB!
 
 name: 01_changed_file
 
 on:
   push:
+on:
+  pull-requst
 
   #  branches: [ $default-branch ]
   #pull_request:
@@ -27,22 +29,22 @@ jobs:
         echo "Add other actions to build,"
 
 ## any yml, but NOT in .github
-#    - uses: Ana06/get-changed-files@v2.3.0
-#      with:
-#        filter: |
-#          *.yml
-#          !.github/*/*.yml 
-#
+     - uses: Ana06/get-changed-files@v2.3.0
+       with:
+         filter: |
+           '*'
+# for NOT !.github/*/*.yml 
+
     - id: files
       uses: Ana06/get-changed-files@v2.3.0
       with:
         format: 'csv'
         filter: '*'
     - run: |
-	mapfile -d ',' -t added_modified_files < <(printf '%s,' '${{ steps.files.outputs.added_modified }}')
-	for added_modified_file in "${added_modified_files[@]}"; do
-	echo "Do something with this ${added_modified_file}."
-	done
+        mapfile -d ',' -t added_modified_files < <(printf '%s,' '${{ steps.files.outputs.added_modified }}')
+        for added_modified_file in "${added_modified_files[@]}"; do
+        echo "Do something with this ${added_modified_file}."
+        done
  
  
 
