@@ -38,10 +38,10 @@ jobs:
 
     - id: files
       uses: Ana06/get-changed-files@v2.3.0
+      if: ${{ !env.act }}
       with:
         format: 'csv'
         filter: '*'
-      if: ${{ !env.act }}
     - run: |
         mapfile -d ',' -t added_modified_files < <(printf '%s,' '${{ steps.files.outputs.added_modified }}')
         for added_modified_file in "${added_modified_files[@]}"; do
