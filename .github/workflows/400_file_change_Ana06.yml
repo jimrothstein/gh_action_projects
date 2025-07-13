@@ -1,8 +1,8 @@
 # Purpose:   Catch a change in certain files
 
 # REF:  https://github.com/Ana06/get-changed-files
-# FAILS on ACT, to test use 'act push -W....'
-# RUNS ONLY ON GITHUB!
+# ACT:  FAILS , but can test use 'act push -W....'
+# GITHUB!
 
 name: 01_changed_file
 run-name: 400_file_change Try ${{ github.run_number }}, @${{ github.actor }}
@@ -11,29 +11,16 @@ on:
   push:
   pull_request:
 
-  #  branches: [ $default-branch ]
-  #pull_request:
-  #  branches: [ $default-branch ]
-
-  # This action does not work on  workflow_dispatch
-  # workflow_dispatch:
-
 jobs:
   step1:
     runs-on: ubuntu-latest 
     steps:
     - uses: actions/checkout@v4
 
-    - name: Run script
-      run: |
-        echo "Hello, world!"
-        echo "Add other actions to build,"
-
 ## any yml, but NOT in .github
 # for NOT !.github/*/*.yml 
-    - uses: Ana06/get-changed-files@v2.3.0
-      if: ${{ !env.act }}
     - id: files
+      uses: Ana06/get-changed-files@v2.3.0
       with:
         format: 'csv'
         filter: '*'
