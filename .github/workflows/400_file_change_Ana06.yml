@@ -36,9 +36,9 @@ jobs:
 
 # for NOT !.github/*/*.yml 
 
-    - id: files
       uses: Ana06/get-changed-files@v2.3.0
       if: ${{ !env.act }}
+    - id: files
       with:
         format: 'csv'
         filter: '*'
@@ -47,6 +47,4 @@ jobs:
         for added_modified_file in "${added_modified_files[@]}"; do
         echo "Do something with this ${added_modified_file}."
         done
- 
- 
 
