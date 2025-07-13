@@ -21,6 +21,7 @@ jobs:
 # for NOT !.github/*/*.yml 
     - id: files
       uses: Ana06/get-changed-files@v2.3.0
+      if: ${{ !env.git }}
       with:
         format: 'csv'
         filter: '*'
