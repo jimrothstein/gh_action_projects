@@ -30,13 +30,8 @@ jobs:
         echo "Add other actions to build,"
 
 ## any yml, but NOT in .github
-    - uses: Ana06/get-changed-files@v2.3.0
-      with:
-        filter: '*'
-
 # for NOT !.github/*/*.yml 
-
-      uses: Ana06/get-changed-files@v2.3.0
+    - uses: Ana06/get-changed-files@v2.3.0
       if: ${{ !env.act }}
     - id: files
       with:
