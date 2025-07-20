@@ -25,3 +25,8 @@ jobs:
       - name: R file
         run:  Rscript -e 'source("load_run.R" )'
 
+      - name: PR comment with file
+        uses: thollander/actions-comment-pull-request@v3
+        with:
+          file-path: qc.Rmd
+

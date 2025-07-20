@@ -1,0 +1,24 @@
+# WORKS !
+name:  900 simple thollander
+
+run-name: 211 runs simple R script
+
+on:
+  workflow_dispatch
+
+jobs:
+  task1:
+    runs-on: ubuntu-latest
+    container:
+      image:  rocker/r-ver:latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+
+      - name: PR comment with file
+        if:  ${{ !env.ACT }}
+        uses: thollander/actions-comment-pull-request@v3
+        with:
+          file-path: qc.Rmd
+
