@@ -1,7 +1,7 @@
 # WORKS !
 name:  900 simple thollander
 
-run-name: 211 runs simple R script
+run-name:   simple thollander 
 
 on:
   workflow_dispatch
