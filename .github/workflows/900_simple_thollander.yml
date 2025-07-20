@@ -5,6 +5,7 @@ run-name:   simple thollander
 
 on:
   workflow_dispatch
+  push
 
 jobs:
   task1:
