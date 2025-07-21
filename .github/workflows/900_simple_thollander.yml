@@ -22,5 +22,6 @@ jobs:
         if:  ${{ !env.ACT }}
         uses: thollander/actions-comment-pull-request@v3
         with:
+	  pr-number: 6
           file-path: qc.Rmd
 
