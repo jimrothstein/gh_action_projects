@@ -26,4 +26,6 @@ jobs:
       - name: debug
         if:  ${{ always() }}
         run: |
-          echo "ref:   ${{github.ref}} \n  head_ref: ${{github.head_ref}}"
+          echo "ref:   ${{github.ref}} "
+          echo "head_ref: ${{github.head_ref}}"
+
