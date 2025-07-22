@@ -25,3 +25,9 @@ jobs:
           pr-number: 6
           file-path: qc.Rmd
 
+       - name:  fail
+         if:  ${{ failure }}
+           run: |
+           echo "900_simple failed"
+	 
+
