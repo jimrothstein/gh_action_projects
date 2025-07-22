@@ -24,6 +24,6 @@ jobs:
           echo "pull-request"
 
       - name: debug
-        if:  ${{always}}
+        if:  ${{ always() }}
         run: |
           echo "ref:   ${{github.ref}} \n  head_ref: ${{github_head_ref}}"
