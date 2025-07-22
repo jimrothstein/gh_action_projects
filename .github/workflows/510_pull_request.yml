@@ -2,7 +2,8 @@ name:  510 pr
 
 on:
   pull_request:
-    types: [opened, reopened]
+    types:  [opened, reopened]
+    branches: [dev]
 
 run-name: 510 pr  ${{ github.run_number }}, @${{ github.actor }}
 
