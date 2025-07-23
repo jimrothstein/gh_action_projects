@@ -53,7 +53,7 @@ jobs:
              - attempt #: **${{github.run_attempt}}**
              - actor: ${{github.actor}}
              - OS:  ${{runner.os}}
-	     - action:  ${{github.action}}
+             - action:  ${{github.action}}
 
 # prints to github console, not to the PR
       - name: check outputs
