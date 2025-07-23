@@ -44,7 +44,7 @@ jobs:
         with:
           message: |
              I am a bot.
-             :heavy_check_mark: @ $DATE
+             :heavy_check_mark: @ "$DATE"
              - item 1
              - item 2
              - run number: ${{github.run_number}} 
