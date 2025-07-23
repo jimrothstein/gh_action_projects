@@ -19,6 +19,9 @@ jobs:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
+      - name:   set time
+        run: sudo timedatectl set-timezone America/Los_Angeles
+
       - name: Check out repository
         uses: actions/checkout@v4
 
@@ -29,7 +32,7 @@ jobs:
       - name: Adding markdown
         run: |
           echo '### Hello world! ' >> $GITHUB_STEP_SUMMARY
-          echo "   _(event **${{ github.event_name }}** / attempt **${{ github.run_attempt }}**)_"
+          echo "   _(event **${{ github.event_name }}** / attempt **${{ github.run_attempt }}**)_" >> $GITHUB_STEP_SUMMARY
 
       - name: more otuput for summary
         run: |
