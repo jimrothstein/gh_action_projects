@@ -15,7 +15,7 @@ permissions:
 jobs:
   job1:
     runs-on: ubuntu-latest
-    if:  ${{ github.ref_name == "main" }}
+    if:  github.ref_name == "main"
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
