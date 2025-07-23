@@ -29,14 +29,11 @@ jobs:
         run: |
           echo "DATE=$(date +'%r')" >> $GITHUB_ENV
 
-      - name: Adding markdown
-        run: |
-          echo '### Hello world! ' >> $GITHUB_STEP_SUMMARY
-          echo "   _(event **${{ github.event_name }}** / attempt **${{ github.run_attempt }}**)_" >> $GITHUB_STEP_SUMMARY
-
-      - name: more otuput for summary
+      - name: output for summary
         run: |
           echo "$DATE" >> $GITHUB_STEP_SUMMARY
+          echo '### Hello world! ' >> $GITHUB_STEP_SUMMARY
+          echo "   _(event **${{ github.event_name }}** / attempt **${{ github.run_attempt }}**)_" >> $GITHUB_STEP_SUMMARY
           echo "more output" >> $GITHUB_STEP_SUMMARY
           echo " end "
 
