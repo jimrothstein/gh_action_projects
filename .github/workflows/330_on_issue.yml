@@ -33,7 +33,6 @@ jobs:
           echo '### Trigger was an issue' >> $GITHUB_STEP_SUMMARY
           echo "   _(event **${{ github.event_name }}** / attempt **${{ github.run_attempt }}**)_" >> $GITHUB_STEP_SUMMARY
           echo "more output" >> $GITHUB_STEP_SUMMARY
-	  echo 
           echo " end "
 
 
