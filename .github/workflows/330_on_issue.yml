@@ -34,5 +34,12 @@ jobs:
           echo "$DATE" >> $GITHUB_STEP_SUMMARY
           echo '### Trigger was an issue' >> $GITHUB_STEP_SUMMARY
           echo "   _(event **${{ github.event_name }}** / attempt **${{ github.run_attempt }}**)_" >> $GITHUB_STEP_SUMMARY
-          echo "more output" >> $GITHUB_STEP_SUMMARY
+             - echo :heavy_check_mark: @ $(DATE)  >> $GITHUB_STEP_SUMMARY
+             - echo  "run number: ${{github.run_number}}" >> $GITHUB_STEP_SUMMARY
+             - run id: ${{github.run_id}}
+             - event: ** ${{github.event_name}} **
+             - attempt #: **${{github.run_attempt}}**
+             - actor: ${{github.actor}}
+             - OS:  ${{runner.os}}
           echo " end "
+          echo "   _(event **${{ github.event_name }}** / attempt **${{ github.run_attempt }}**)_"
