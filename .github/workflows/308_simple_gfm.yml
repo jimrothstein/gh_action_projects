@@ -15,6 +15,7 @@ permissions:
 jobs:
   job1:
     runs-on: ubuntu-latest
+    if:  ${{ github.ref_name == "main" }}
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
@@ -29,7 +30,7 @@ jobs:
         run: |
           echo "DATE=$(date +'%r')" >> $GITHUB_ENV
 
-      - name: output for summary
+      - name: output for summary (at end)
         run: |
           echo "$DATE" >> $GITHUB_STEP_SUMMARY
           echo '### Hello world! ' >> $GITHUB_STEP_SUMMARY
@@ -54,6 +55,7 @@ jobs:
              - actor: ${{github.actor}}
              - OS:  ${{runner.os}}
              - action:  ${{github.action}}
+             - github.ref_name:  ${{github.ref_name}}
 
 # prints to github console, not to the PR
       - name: check outputs
