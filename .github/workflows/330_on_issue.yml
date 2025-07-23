@@ -8,9 +8,6 @@ run-name: 330_on_issue
 on:
   issues:
     types: [opened, edited, closed, reopened, deleted]
-	
-  pull_request:
-
 
 jobs:
   job1:
