@@ -2,7 +2,9 @@ name:  330_on_issue
 
 
 run-name: 330_on_issue
+
 # NOTES:
+# USE DEFAULT branch !
 # $GITHUB_STEP_SUMMARY appears in details of run
 
 on:
@@ -12,7 +14,7 @@ on:
 jobs:
   job1:
     runs-on: ubuntu-latest
-    if:  github.ref_name == 'dev'
+    #if:  github.ref_name == 'dev'
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
