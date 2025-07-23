@@ -8,7 +8,6 @@ run-name: 308_simple_gfm
 on:
   workflow_dispatch:
   pull_request:
-  push:
 
 permissions:
   pull-requests: write
