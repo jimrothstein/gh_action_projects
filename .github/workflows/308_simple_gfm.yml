@@ -1,6 +1,9 @@
 name:  308_simple_gfm
 
+
 run-name: 308_simple_gfm
+# NOTES:
+# $GITHUB_STEP_SUMMARY appears in details of run
 
 on:
   workflow_dispatch:
@@ -28,10 +31,10 @@ jobs:
           echo '### Hello world! ' >> $GITHUB_STEP_SUMMARY
           echo "   _(event **${{ github.event_name }}** / attempt **${{ github.run_attempt }}**)_"
 
-      - name: more otuput
+      - name: more otuput for summary
         run: |
-          echo "$DATE"
-          echo "**more output**" >> $GITHUB_STEP_SUMMARY
+          echo "$DATE" >> $GITHUB_STEP_SUMMARY
+          echo "more output" >> $GITHUB_STEP_SUMMARY
           echo " end "
 
 
@@ -41,15 +44,16 @@ jobs:
         with:
           message: |
              I am a bot.
-             :heavy_check_mark: @ $(DATE)
+             :heavy_check_mark: @ $DATE
              - item 1
              - item 2
              - run number: ${{github.run_number}} 
              - run id: ${{github.run_id}}
-             - event: ** ${{github.event_name}} **
+             - event: **${{github.event_name}}** 
              - attempt #: **${{github.run_attempt}}**
              - actor: ${{github.actor}}
              - OS:  ${{runner.os}}
+	     - action:  ${{github.action}}
 
 # prints to github console, not to the PR
       - name: check outputs
