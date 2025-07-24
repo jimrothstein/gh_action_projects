@@ -1,6 +1,9 @@
 name:  308_simple_gfm
 
+
 run-name: 308_simple_gfm
+# NOTES:
+# $GITHUB_STEP_SUMMARY appears in details of run
 
 on:
   workflow_dispatch:
@@ -12,26 +15,27 @@ permissions:
 jobs:
   job1:
     runs-on: ubuntu-latest
+    if:  github.ref_name == 'dev'
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
+      - name:   set time
+        run: sudo timedatectl set-timezone America/Los_Angeles
+
       - name: Check out repository
         uses: actions/checkout@v4
 
       - name: time
         run: |
-          echo "DATE=$(date)" >> $GITHUB_ENV
+          echo "DATE=$(date +'%r')" >> $GITHUB_ENV
 
-      - name: Adding markdown
+      - name: output for summary (at end)
         run: |
+          echo "$DATE" >> $GITHUB_STEP_SUMMARY
           echo '### Hello world! ' >> $GITHUB_STEP_SUMMARY
-          echo "   _(event **${{ github.event_name }}** / attempt **${{ github.run_attempt }}**)_"
-
-      - name: more otuput
-        run: |
-          echo "$DATE"
-          echo "**more output**" >> $GITHUB_STEP_SUMMARY
+          echo "   _(event **${{ github.event_name }}** / attempt **${{ github.run_attempt }}**)_" >> $GITHUB_STEP_SUMMARY
+          echo "more output" >> $GITHUB_STEP_SUMMARY
           echo " end "
 
 
@@ -41,15 +45,17 @@ jobs:
         with:
           message: |
              I am a bot.
-             :heavy_check_mark: @ $(date)
+             :heavy_check_mark: @ "$DATE"
              - item 1
              - item 2
              - run number: ${{github.run_number}} 
              - run id: ${{github.run_id}}
-             - event: ** ${{github.event_name}} **
+             - event: **${{github.event_name}}** 
              - attempt #: **${{github.run_attempt}}**
              - actor: ${{github.actor}}
              - OS:  ${{runner.os}}
+             - action:  ${{github.action}}
+             - github.ref_name:  ${{github.ref_name}}
 
 # prints to github console, not to the PR
       - name: check outputs

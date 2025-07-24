@@ -1,7 +1,5 @@
 
 ## GOAL:   trigger on pull_request,  limited by
-##         - branch main
-##         - only this file
 
 
 

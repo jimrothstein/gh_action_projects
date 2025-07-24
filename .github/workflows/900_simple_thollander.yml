@@ -5,8 +5,8 @@ run-name:   simple thollander
 
 on:
   workflow_dispatch:
-  push:
-  pull_request:
+  #push:
+  #pull_request:
 
 jobs:
   task1:
@@ -22,6 +22,12 @@ jobs:
         if:  ${{ !env.ACT }}
         uses: thollander/actions-comment-pull-request@v3
         with:
-	  pr-number: 6
+          pr-number: 6
           file-path: qc.Rmd
+
+       - name:  fail
+         if:  ${{ failure }}
+           run: |
+           echo "900_simple failed"
+	 
 
