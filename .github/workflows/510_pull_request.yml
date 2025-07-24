@@ -1,19 +1,20 @@
 
 ## GOAL:   trigger on pull_request,  limited by
-##         - branch dev
+##         - branch main
 ##         - only this file
+
 
 
 name:  510 pr
 
 on:
   pull_request:
-    types:  [opened, reopened]
-    branches: [dev]
+    types:  [opened, reopened, edited ]
+    branches: [main]
     paths:
       - '510_pull_request.yml'
   push:
-    branches: [dev]
+    branches: [main]
     paths:
       - '510_pull_request.yml'
 
