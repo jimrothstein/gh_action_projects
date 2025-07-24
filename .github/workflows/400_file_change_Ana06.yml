@@ -1,0 +1,34 @@
+# Purpose:   Catch a change in certain files
+
+# REF:  https://github.com/Ana06/get-changed-files
+# ACT:  FAILS , but can test use 'act push -W....'
+# GITHUB!
+
+name: 01_changed_file
+run-name: 400_file_change Try ${{ github.run_number }}, @${{ github.actor }}
+
+on:
+  workflow_dispatch:
+  #push:
+  #pull_request:
+
+jobs:
+  step1:
+    runs-on: ubuntu-latest 
+    steps:
+    - uses: actions/checkout@v4
+
+## any yml, but NOT in .github
+# for NOT !.github/*/*.yml 
+    - id: files
+      uses: Ana06/get-changed-files@v2.3.0
+      if: ${{ !env.git }}
+      with:
+        format: 'csv'
+        filter: '*'
+    - run: |
+        mapfile -d ',' -t added_modified_files < <(printf '%s,' '${{ steps.files.outputs.added_modified }}')
+        for added_modified_file in "${added_modified_files[@]}"; do
+        echo "Do something with this ${added_modified_file}."
+        done
+

@@ -8,11 +8,11 @@ name: 920_files_change
 # act runs, but misses logic
 # githb works.
 on:
-  push:
-    paths:
-      - '**/*.yml'
-    branches:
-      - 'dev'
+#  push:
+#    paths:
+#      - '**/*.yml'
+#    branches:
+#      - 'dev'
   workflow_dispatch:
 
 run-name:  920 on ${{ github.event_name }}, branch is ${{ github.headref || github.ref_name }}, ${{ github.run_number }}, @${{ github.actor }}

@@ -3,6 +3,7 @@ name: 220 render QC ✅
 
 on:
   workflow_dispatch:
+  push:
 
 # token needs
 permissions:
@@ -20,20 +21,41 @@ jobs:
       - name: Check out this repository
         uses: actions/checkout@v4
 
-      - name:  quarto
-        uses: quarto-dev/quarto-actions/setup@v2
-
-      - name: Install R dependencies
-        run: |
-          Rscript -e 'install.packages(c("dplyr", "jsonlite", "quarto", "diffdf", "rmarkdown", "safetyData", "tibble", "stringr", "haven"), repos = "https://packagemanager.posit.co/cran/__linux__/noble/latest")'
-
-      - name: Render Quarto document
-        run: |
-          quarto render README.Rmd  --to gfm --output README.md
-
-      - name: Run QC script
-        run: R -e 'quarto::quarto_render("README.Rmd")'
-        shell: R {0}
+#      - name: Install packages
+#        uses: r-lib/actions/setup-r-dependencies@v2
+#        with:
+#          packages: |
+#            any::readr
+#            any::tidyr
+#            any::dplyr
+#            any::lubridate
+#            any::stringr
+#            any::R.utils
+#            any::quarto
+#            any::jsonlite
+#
+#      - name: Set up Quarto
+#        uses: quarto-dev/quarto-actions/setup@v2
+#
+#      - name: echo1
+#        run: |
+#          echo "get quarto"
+#
+#
+#      - name: Install R dependencies
+#        if:  ${{ 2 > 5 }}
+#        run: |
+#          Rscript -e 'install.packages(c("dplyr", "jsonlite", "quarto", "diffdf", "rmarkdown", "safetyData", "tibble", "stringr", "haven"), repos = "https://packagemanager.posit.co/cran/__linux__/noble/latest")'
+#
+#      - name: Render Quarto document
+#        if:  ${{ 2 > 5 }}
+#        run: |
+#          quarto render README.Rmd  --to gfm --output README.md
+#
+#      - name: Run QC script
+#        if:  ${{ 2 > 5 }}
+#        run: R -e 'quarto::quarto_render("README.Rmd")'
+#        shell: R {0}
 
 #      - name: Upload report artifact
 #        uses: actions/upload-artifact@v4
@@ -41,9 +63,9 @@ jobs:
 #          name: qcReport.html
 #          path: qcReport.html
 
-#      - name: PR comment with file
-#        uses: thollander/actions-comment-pull-request@v3
-#        with:
-#          file-path: qc.Rmd
+      - name: PR comment with file
+        uses: thollander/actions-comment-pull-request@v3
+        with:
+          file-path: qc.Rmd
 
 
