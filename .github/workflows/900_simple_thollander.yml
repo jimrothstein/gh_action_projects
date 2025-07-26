@@ -15,10 +15,6 @@ jobs:
       image:  rocker/r-ver:latest
 
     steps:
-
-      - name:  nothing
-        echo:  "hi"
-
       - name: Check out repository
         uses: actions/checkout@v4
 
