@@ -43,11 +43,6 @@ jobs:
 
     steps:
      - name: contains?
-       if: contains ('
-         ref/heads/dev
-         ref/heads/main
-       ', github_ref)
-
-     - name:  output
+       if: contains ('hello', 'lo')
        run: |
          echo $GITHUB_OUTPUT
