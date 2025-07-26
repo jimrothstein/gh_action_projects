@@ -11,8 +11,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-     - name: get time
-       echo "DATE=$(date +'%r')" >> $GITHUB_ENV
 
      - name:  built-in
        run: |
