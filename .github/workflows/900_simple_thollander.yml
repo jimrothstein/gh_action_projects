@@ -17,7 +17,11 @@ jobs:
     steps:
 
       - name:  nothing
+<<<<<<< HEAD
         echo "hi"
+=======
+        echo:  "hi"
+>>>>>>> 8b68825 (wip)
 
       - name: Check out repository
         uses: actions/checkout@v4
