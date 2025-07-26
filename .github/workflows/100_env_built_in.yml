@@ -3,6 +3,7 @@ name: 100_built_in
 on:
   workflow_dispatch:
 
+
 run-name: Hello  Try ${{ github.run_number }}, @${{ github.actor }}
 
 jobs:
@@ -11,7 +12,7 @@ jobs:
 
     steps:
      - name: get time
-       run: date
+       echo "DATE=$(date +'%r')" >> $GITHUB_ENV
 
      - name:  built-in
        run: |
@@ -20,16 +21,7 @@ jobs:
 
      - name:  print1
        run: |
-         echo "Run id = $GITHUB_RUN_ID"
-         echo "Run attempt = $GITHUB_RUN_ATTEMPT"
-         echo "Run number = $GITHUB_RUN_NUMBER"
-         echo "ACTOR = $GITHUB_ACTOR"
-         echo "OS = $RUNNER_OS"
-         echo "EVENT = $GITHUB_EVENT_NAME"
 
-     - name:  print2
-       run: |
-         echo "value = dog " >> "$GITHUB_OUTPUT"
          echo "Run id = $GITHUB_RUN_ID"
          echo "Run attempt = $GITHUB_RUN_ATTEMPT"
          echo "Run number = $GITHUB_RUN_NUMBER"
@@ -37,6 +29,11 @@ jobs:
          echo "OS = $RUNNER_OS"
          echo "EVENT = $GITHUB_EVENT_NAME"
          echo "### Hello world! :rocket:" >> $GITHUB_STEP_SUMMARY
+         echo "value = dog " >> "$GITHUB_OUTPUT"
+         echo "github.action = ${{ github.action }}"
+         echo "github.base_ref = ${{ github.base_ref }}"
+	 echo "github.head_ref = ${{ github.head_ref }}"
+         echo "github.ref = ${{ github.ref }}"
 
 
      - name:  print3
@@ -48,8 +45,11 @@ jobs:
     needs: [job1]
 
     steps:
-     - name: get time
-       run: date
+     - name: contains?
+       if: contains ('
+         ref/heads/dev
+         ref/heads/main
+       ', github_ref)
 
      - name:  output
        run: |
