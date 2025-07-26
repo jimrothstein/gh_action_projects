@@ -29,5 +29,3 @@ jobs:
          if:  ${{ failure }}
            run: |
            echo "900_simple failed"
-	 
-
