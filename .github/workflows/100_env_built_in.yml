@@ -19,7 +19,6 @@ jobs:
 
      - name:  print1
        run: |
-
          echo "Run id = $GITHUB_RUN_ID"
          echo "Run attempt = $GITHUB_RUN_ATTEMPT"
          echo "Run number = $GITHUB_RUN_NUMBER"
