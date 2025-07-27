@@ -1,7 +1,6 @@
 name: 325_two_jobs
 
-# run-name:   add name of this file?
-# job1 output - where?
+# job1 has 2 outputs, used in job2
 on:
   workflow_dispatch:
 
@@ -25,4 +24,4 @@ jobs:
       - env:
           OUTPUT1: ${{needs.job1.outputs.output1}}
           OUTPUT2: ${{needs.job1.outputs.output2}}
-        run: echo "$OUTPUT1 $OUTPUT2"
+        run: echo "$OUTPUT1 $OUTPUT2" >> $GITHUB_STEP_SUMMARY
