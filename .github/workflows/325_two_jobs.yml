@@ -11,18 +11,18 @@ jobs:
     runs-on: ubuntu-latest
     # Define job outputs here that you want to pass to other jobs
     outputs:
-      output1: ${{ steps.step1.outputs.value_from_step }}
-      output2: ${{ steps.step2.outputs.animal }}
+      output1: ${{ steps.step1.outputs.test }}
+      output2: ${{ steps.step2.outputs.test }}
 
     steps:
       - id: step1
         run: |
           echo "100_buit_in"
           echo "SHA = ${{ github.sha }}" # Use github.sha directly here
-          echo "value_from_step=dog" >> "$GITHUB_OUTPUT"
+          echo "test=dog" >> "$GITHUB_OUTPUT"
 
       - id: step2
-          echo "animal=cat" >> "$GITHUB_OUTPUT"
+          echo "test=cat" >> "$GITHUB_OUTPUT"
 # give this gives output1 value for `value_from_step` 
 
   job2:
