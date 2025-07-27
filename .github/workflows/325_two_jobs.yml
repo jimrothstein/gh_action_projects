@@ -9,40 +9,20 @@ run-name:  ${{ github.run_number }}, ${{ github.event_name }}, branch is ${{ git
 jobs:
   job1:
     runs-on: ubuntu-latest
-    # Define job outputs here that you want to pass to other jobs
+    # Map a step output to a job output
     outputs:
       output1: ${{ steps.step1.outputs.test }}
       output2: ${{ steps.step2.outputs.test }}
-
     steps:
-      - name: setup
-          echo "100_buit_in"
-          echo "SHA = ${{ github.sha }}" # Use github.sha directly here
-
       - id: step1
-        run: |
-          echo "test=dog" >> "$GITHUB_OUTPUT"
-
+        run: echo "test=hello" >> "$GITHUB_OUTPUT"
       - id: step2
-        run: |
-          echo "test=cat" >> "$GITHUB_OUTPUT"
-# give this gives output1 value for `value_from_step` 
-
+        run: echo "test=world" >> "$GITHUB_OUTPUT"
   job2:
     runs-on: ubuntu-latest
-    needs: [job1]
-
+    needs: job1
     steps:
-      - env
-          $OUTPUT1: ${{ needs.job1.outputs.output1}}
-          $OUTPUT2: ${{ needs.job1.outputs.output2}}
-        run: |
-          echo "$OUTPUT1 $OUTPUT2"
-
-      - name: Check condition and print output from job1
-        # Correct syntax for 'contains' in an 'if' condition
-        # and accessing output from a previous job using needs.job_id.outputs.output_name
-        #if: contains(needs.job1.outputs.output1, 'dog')
-        run: |
-          echo "Output from job1: ${{ needs.job1.outputs.output1 }}"
-          echo "The condition evaluated to true!"
+      - env:
+          OUTPUT1: ${{needs.job1.outputs.output1}}
+          OUTPUT2: ${{needs.job1.outputs.output2}}
+        run: echo "$OUTPUT1 $OUTPUT2"
