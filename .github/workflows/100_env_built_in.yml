@@ -9,6 +9,8 @@ run-name: Hello  Try ${{ github.run_number }}, @${{ github.actor }}
 jobs:
   job1:
     runs-on: ubuntu-latest
+    outputs:
+      my_output_from_job1: ${{ steps.set_output_step.outputs.value_from_step }}
 
     steps:
 
@@ -17,7 +19,9 @@ jobs:
          echo "100_buit_in"
          echo "SHA = ${{ env.GITHUB_SHA }}"
 
-     - name:  print1
+     - name: print1
+       id: print1_output
+        # Give this step an ID to reference its output    - name:  print1
        run: |
          echo "Run id = $GITHUB_RUN_ID"
          echo "Run attempt = $GITHUB_RUN_ATTEMPT"
@@ -36,10 +40,21 @@ jobs:
      - name:  print3
        run: |
          echo $GITHUB_OUTPUT
+       run: |
+          echo "Output from step 'print1': ${{ steps.print1_output.outputs.value_from_step }}"
+
 
   job2:
     runs-on: ubuntu-latest
     needs: [job1]
+    steps:
+      - name: Check condition and print output from job1
+        # Correct syntax for 'contains' in an 'if' condition
+        # and accessing output from a previous job using needs.job_id.outputs.output_name
+        if: contains(needs.job1.outputs.my_output_from_job1, 'dog')
+        run: |
+          echo "Output from job1: ${{ needs.job1.outputs.my_output_from_job1 }}"
+          echo "The condition evaluated to true!"
 
     steps:
      - name: contains?
