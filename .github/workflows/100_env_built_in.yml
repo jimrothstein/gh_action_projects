@@ -9,8 +9,6 @@ run-name: Hello  Try ${{ github.run_number }}, @${{ github.actor }}
 jobs:
   job1:
     runs-on: ubuntu-latest
-    outputs:
-      my_output_from_job1: ${{ steps.set_output_step.outputs.value_from_step }}
 
     steps:
 
@@ -29,7 +27,6 @@ jobs:
          echo "ACTOR = $GITHUB_ACTOR"
          echo "OS = $RUNNER_OS"
          echo "EVENT = $GITHUB_EVENT_NAME"
-         echo "### Hello world! :rocket:" >> $GITHUB_STEP_SUMMARY
          echo "value = dog " >> "$GITHUB_OUTPUT"
          echo "github.action = ${{ github.action }}"
          echo "github.base_ref = ${{ github.base_ref }}"
@@ -39,7 +36,8 @@ jobs:
 
      - name:  print3
        run: |
-         echo $GITHUB_OUTPUT
+         echo "### Hello world! :rocket:" >> $GITHUB_STEP_SUMMARY
+         echo $GITHUB_OUTPUT >> $GITHUB_STEP_SUMMARY
          echo "Output from step 'print1': ${{ steps.print1_output.outputs.value_from_step }}"
 
 
