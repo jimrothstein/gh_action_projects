@@ -3,8 +3,7 @@ name: 325_two_jobs
 on:
   workflow_dispatch:
 
-run-name: Hello Try ${{ github.run_number }}, @${{ github.actor }}
-
+run-name:  ${{ github.run_number }}, {{ github.event_name }}, branch is ${{ github.headref || github.ref_name }}, actor= ${{ github.actor }}
 jobs:
   job1:
     runs-on: ubuntu-latest
@@ -27,7 +26,7 @@ jobs:
       - name: Check condition and print output from job1
         # Correct syntax for 'contains' in an 'if' condition
         # and accessing output from a previous job using needs.job_id.outputs.output_name
-        if: contains(needs.job1.outputs.my_output_from_job1, 'dog')
+        #if: contains(needs.job1.outputs.my_output_from_job1, 'dog')
         run: |
           echo "Output from job1: ${{ needs.job1.outputs.my_output_from_job1 }}"
           echo "The condition evaluated to true!"
