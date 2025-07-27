@@ -56,8 +56,7 @@ jobs:
           echo "Output from job1: ${{ needs.job1.outputs.my_output_from_job1 }}"
           echo "The condition evaluated to true!"
 
-    steps:
-     - name: contains?
-       if: contains ('hello', 'lo')
-       run: |
-         echo $GITHUB_OUTPUT
+      - name: contains?
+        if: contains ('hello', 'lo')
+        run: |
+          echo $GITHUB_OUTPUT
