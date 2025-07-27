@@ -57,6 +57,6 @@ jobs:
           echo "The condition evaluated to true!"
 
       - name: contains?
-        if: contains ('hello', 'lo')
+        if: contains('hello', 'lo')
         run: |
           echo $GITHUB_OUTPUT
