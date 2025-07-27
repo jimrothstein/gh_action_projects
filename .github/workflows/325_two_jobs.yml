@@ -15,13 +15,16 @@ jobs:
       output2: ${{ steps.step2.outputs.test }}
 
     steps:
-      - id: step1
-        run: |
+      - name: setup
           echo "100_buit_in"
           echo "SHA = ${{ github.sha }}" # Use github.sha directly here
+
+      - id: step1
+        run: |
           echo "test=dog" >> "$GITHUB_OUTPUT"
 
       - id: step2
+        run: |
           echo "test=cat" >> "$GITHUB_OUTPUT"
 # give this gives output1 value for `value_from_step` 
 
