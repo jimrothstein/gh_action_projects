@@ -6,8 +6,9 @@ run-name: 210 rocker summary
 
 on:
   workflow_dispatch:
-  push:
-#  pull_request:
+  pull_request:
+    branches:
+      -  main:
 
 permissions:  read-all
 
