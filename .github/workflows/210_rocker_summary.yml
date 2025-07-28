@@ -1,5 +1,6 @@
 name:  210 rocker 
 
+## PURPOSE:   print R table to $GITHUB_STEP_SUMMARY
 run-name: 210 rocker summary
 
 on:
