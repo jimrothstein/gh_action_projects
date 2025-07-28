@@ -5,10 +5,10 @@ name:  210 rocker
 run-name: 210 rocker summary
 
 on:
-  workflow_dispatch:
   pull_request:
     branches:
       -  main:
+  workflow_dispatch:
 
 permissions:  read-all
 
