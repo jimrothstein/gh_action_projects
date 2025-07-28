@@ -44,10 +44,13 @@ jobs:
         run: git status
 
       - name:  mtcars1
+        if:  ${{ 2 > 3 }}
         run: |
-
           Rscript -e 'print(mtcars)'
 
+      - name: cat
+        run:  |
+          cat qc.Rmd >> $GITHUB_STEP_SUMMARY
 
       - name:  mtcars2
         run: |
