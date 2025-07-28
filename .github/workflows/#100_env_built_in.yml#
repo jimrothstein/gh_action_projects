@@ -39,3 +39,7 @@ jobs:
          echo "### Hello world! :rocket:" >> $GITHUB_STEP_SUMMARY
          echo $GITHUB_OUTPUT >> $GITHUB_STEP_SUMMARY
          echo "Output from step 'print1': ${{ steps.print1_output.outputs.value_from_step }}"
+
+         
+
+             
