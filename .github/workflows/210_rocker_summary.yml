@@ -52,7 +52,12 @@ jobs:
         run:  |
           cat qc.Rmd >> $GITHUB_STEP_SUMMARY
 
+      - name:  fail!
+        run:  |
+          exit 1
+
       - name:  mtcars2
+        if: ${{ 2 > 3 }}
         run: |
           Rscript -e 'print(mtcars)'   >> $GITHUB_STEP_SUMMARY
 
