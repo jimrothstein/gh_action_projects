@@ -13,10 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image:  rocker/r-ver:latest
+
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-
 
       - name: PR comment with file
         if:  ${{ !env.ACT }}
@@ -29,5 +29,3 @@ jobs:
          if:  ${{ failure }}
            run: |
            echo "900_simple failed"
-	 
-
