@@ -1,0 +1,72 @@
+name:  210 rocker 
+
+## PURPOSE:   print R table to $GITHUB_STEP_SUMMARY
+
+run-name: 210 rocker summary
+
+on:
+  workflow_dispatch:
+  push:
+#  pull_request:
+
+permissions:  read-all
+
+jobs:
+  import-data:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    container:
+      image: rocker/r-ver:latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Confirm repo is checked out
+        run: |
+          echo "RUNNING ls"
+          ls -la
+
+      - name: Install git
+        if: ${{2 > 3}}
+        run: |
+          echo "INSTALL git;  github.workspace = ${{ github.workspace }}"
+          apt-get update
+          apt-get install -y git
+#  seems to require apt-get update be run
+
+      - name:  git
+        if: ${{2 > 3}}
+        run: git status
+
+      - name:  mtcars1
+        run: |
+          Rscript -e 'print(mtcars)'
+
+      - name:  mtcars2
+        run: |
+          Rscript -e 'print(mtcars)'   >> $GITHUB_STEP_SUMMARY
+
+
+      - name:  install binary pak - WoRKS!
+        if:  ${{ 2 > 3 }}
+        run:  Rscript -e 'install.packages("pak",
+           repos = sprintf("https://r-lib.github.io/p/pak/stable/%s/%s/%s",
+           .Platform$pkgType, R.Version()$os, R.Version()$arch))'
+
+      - name:  install diffdf binary  -- works
+        if: ${{ 2 > 3 }}
+        run:  Rscript -e 'pak::pkg_install("diffdf")'  # default is binary
+
+
+
+      - name: Commit results
+        if: ${{ 2 > 3 }}
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git commit -m 'Data updated' || echo "No changes to commit"
+          git push origin || echo "No changes to commit"
