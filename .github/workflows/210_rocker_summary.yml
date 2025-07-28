@@ -1,6 +1,7 @@
 name:  210 rocker 
 
 ## PURPOSE:   print R table to $GITHUB_STEP_SUMMARY
+##            AND then in the commit
 run-name: 210 rocker summary
 
 on:
