@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Source: https://github.com/pharmaverse/admiralci
 name: CRAN Status Monitor
 
@@ -25,6 +26,8 @@ jobs:
 
 ---
 ---
+=======
+>>>>>>> a08f20a (wip)
 # Source: https://github.com/pharmaverse/admiralci
 name: CRAN Status Monitor
 
@@ -49,4 +52,3 @@ jobs:
       # Create an issue if one or more of the following
       # statuses are reported on the check report.
       statuses: "WARN,ERROR,NOTE"
-
