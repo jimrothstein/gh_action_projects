@@ -1,6 +1,8 @@
 # Source: https://github.com/pharmaverse/admiralci
 name: CRAN Status Monitor
 
+permissions: write-all
+
 on:
   # 'workflow_dispatch' gives you the ability
   # to run this workflow on demand, anytime
