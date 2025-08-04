@@ -1,33 +1,3 @@
-<<<<<<< HEAD
-# Source: https://github.com/pharmaverse/admiralci
-name: CRAN Status Monitor
-
-on:
-  # 'workflow_dispatch' gives you the ability
-  # to run this workflow on demand, anytime
-  workflow_dispatch:
-  # 'schedule' events are triggered on a schedule
-  schedule:
-    - cron: '1 0 * * 1,3,5'
-  push:
-
-jobs:
-  cran-status:
-
-
-
-
-
-
-
-
-
-
-
----
----
-=======
->>>>>>> a08f20a (wip)
 # Source: https://github.com/pharmaverse/admiralci
 name: CRAN Status Monitor
 
@@ -44,6 +14,7 @@ jobs:
   cran-status:
     name: Check & Report
     uses: pharmaverse/admiralci/.github/workflows/cran-status.yml@main
+    if: ${{ github.event_name != 'push' }}
     with:
       # Whom should the issue be assigned to if errors are encountered
       # in the CRAN status checks?
