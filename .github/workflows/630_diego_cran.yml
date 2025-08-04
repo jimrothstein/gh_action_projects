@@ -3,7 +3,7 @@ name: check-cran-status
 ## REF:  https://github.com/dieghernan/cran-status-check/tree/main 
 on:
   push:
-    branches: [main]
+    branches: [dev, main]
   schedule:
     - cron: '0 6 * * 1,4' # Runs at 06:00 on Monday and Thursday, check https://crontab.guru/
 
@@ -30,4 +30,3 @@ jobs:
           fail-on-error: false
           create-issue: "true"
           issue-assignees: "jimrothstein"
-             
