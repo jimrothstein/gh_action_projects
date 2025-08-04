@@ -1,0 +1,33 @@
+name: check-cran-status
+
+## REF:  https://github.com/dieghernan/cran-status-check/tree/main 
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '0 6 * * 1,4' # Runs at 06:00 on Monday and Thursday, check https://crontab.guru/
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check
+        uses: dieghernan/cran-status-check@v2
+
+      - name:  dplyr
+        uses: dieghernan/cran-status-check@v2
+        with:
+          package: "dplyr"
+          statuses: "NOTE,WARN,ERROR"
+          fail-on-error: false
+          create-issue: "true"
+          issue-assignees: "jimrothstein"
+             
