@@ -22,10 +22,10 @@ jobs:
       - name: Check
         uses: dieghernan/cran-status-check@v2
 
-      - name:  dplyr
+      - name:  do-the-work
         uses: dieghernan/cran-status-check@v2
         with:
-          package: "dplyr"
+          package: "admiral"
           statuses: "NOTE,WARN,ERROR"
           fail-on-error: false
           create-issue: "true"
