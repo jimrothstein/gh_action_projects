@@ -11,10 +11,13 @@ on:
 
 jobs:
   call-workflow:    # must be at job level, not step
-    runs-on: ubuntu:latest
-    uses: ./.github/workflows/710_reuseable_workflow.yml
-    with:
-      name: jim
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: simple
+        uses: ./.github/workflows/710_reuseable_workflow.yml
+        with:
+          name: jim
 
   call-peter-evans:   # job2
     name: the_call
