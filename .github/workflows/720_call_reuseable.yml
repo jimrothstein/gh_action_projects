@@ -3,6 +3,7 @@ name:  720_call_reusable.yml
 ## REF: Reuseable 
 ##      https://docs.github.com/en/actions/reference/workflows-and-actions/reusable-workflows
 
+## job1 uses workflow in SAME directory, note:  must be called at the JOB level
 
 on:
   push:
@@ -12,12 +13,9 @@ on:
 jobs:
   call-workflow:    # must be at job level, not step
     runs-on: ubuntu-latest
-
-    steps:
-      - name: simple
-        uses: ./.github/workflows/710_reuseable_workflow.yml
-        with:
-          name: jim
+      uses: ./.github/workflows/710_reuseable_workflow.yml
+      with:
+        name: jim
 
   call-peter-evans:   # job2
     name: the_call
