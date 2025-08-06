@@ -18,7 +18,7 @@ jobs:
         uses: peter-evans/create-issue-from-file@v5
         with:
           title: An example issue
-          content-filepath: ./.github/workflows/720_call_reuseable.yml
+          content-filepath: ./.github/workflows/120_files.yml
           assignees: jimrothstein
           labels: |
             report
