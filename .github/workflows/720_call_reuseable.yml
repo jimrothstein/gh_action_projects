@@ -2,9 +2,7 @@ name:  720_call_resuable.yml
 
 
 on:
-  pull_request:
-    branches:
-      - dev
+  push:
 
 jobs:
   call-workflow:
