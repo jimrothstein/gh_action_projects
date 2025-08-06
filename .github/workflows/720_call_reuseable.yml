@@ -12,7 +12,6 @@ on:
 
 jobs:
   call-workflow:    # must be at job level, not step
-    runs-on: ubuntu-latest
       uses: ./.github/workflows/710_reuseable_workflow.yml
       with:
         name: jim
