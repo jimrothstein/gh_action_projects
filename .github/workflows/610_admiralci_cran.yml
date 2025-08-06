@@ -10,7 +10,7 @@ on:
   # 'schedule' events are triggered on a schedule
   schedule:
     - cron: '1 0 * * 1,3,5'
-  push:
+#  push:
 
 jobs:
   cran-status:
