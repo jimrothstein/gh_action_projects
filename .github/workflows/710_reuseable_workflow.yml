@@ -36,11 +36,8 @@ on:
         default: "Ralph"
         required: false
         type: string
-      secrets:
-        token:
-          required: true
 
-permissions: write-all
+#permissions: write-all
 
 concurrency:
   group: cran-status-${{ github.event.pull_request.number || github.ref }}
