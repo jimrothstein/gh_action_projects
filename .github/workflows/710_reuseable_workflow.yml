@@ -1,0 +1,69 @@
+## reusable cran_status.yml
+---
+name: 710_resuse
+
+on:
+  workflow_call:
+    inputs:
+      issue-assignees:
+        description: |
+          Whom should the issue be assigned to if errors are
+          encountered in the CRAN status checks?
+          This is a comma-separated string of GitHub usernames.
+          If undefined or empty, no assignments are made.
+        default: ""
+        required: false
+        type: string
+      statuses:
+        description: |
+          Create an issue if one or more of the following
+          statuses are reported on the check report.
+          This is a comma-separated string of statuses.
+          Allowed statuses are 'NOTE', 'WARN', and 'ERROR'
+        default: "ERROR"
+        required: false
+        type: string
+      path:
+        description: |
+          Path to the R package root, if the package is not at the
+          top level of the repository.
+        default: "."
+        required: false
+        type: string
+      name:
+        description: |
+           Name of person.
+        default: "Ralph"
+        required: false
+        type: string
+
+permissions: write-all
+
+concurrency:
+  group: cran-status-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  job1:
+     runs-on: ubuntu-latest
+     steps:
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Print Name
+        run: |
+          echo The service is ${{ inputs.name }}
+
+#  cran-status:
+#    name: Check Status
+#    runs-on: ubuntu-latest
+#    container:
+#      image: rocker/tidyverse:latest
+#    steps:
+#      - name: Run CRAN Status Action
+#        uses: insightsengineering/cran-status-action@v1
+#        with:
+#          statuses: "${{ inputs.statuses }}"
+#          issue-assignees: "${{ inputs.issue-assignees }}"
+#          path: "${{ inputs.path }}"

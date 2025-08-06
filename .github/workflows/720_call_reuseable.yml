@@ -1,0 +1,13 @@
+name:  720_call_resuable.yml
+
+
+on:
+  pull_request:
+    branches:
+      - dev
+
+jobs:
+  call-workflow:
+    uses: ./.github/workflows/710_resuable_workflow.yml
+    with:
+      name: jim
