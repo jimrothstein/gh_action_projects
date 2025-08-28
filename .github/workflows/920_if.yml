@@ -1,16 +1,14 @@
 
-name: 920_files_change
+name: 920_if.yml
 
 ## PURPOSE:
 ##  Run only when *.yml changes  AND branch matches (or workflow-dispatch if exists) 
 ## works!!
 
-# act runs, but misses logic
-# githb works.
 on:
-#  push:
-#    paths:
-#      - '**/*.yml'
+  push:
+    paths:
+      - '**/*.yml'
 #    branches:
 #      - 'dev'
   workflow_dispatch:
@@ -22,8 +20,18 @@ run-name:  920 on ${{ github.event_name }}, branch is ${{ github.headref || gith
 
 jobs:
 
-# runs only if event is workflow_dispatch
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: echo
+        run: |
+          echo "build is now running"
 
+
+# job runs only if event is workflow_dispatch
   workflow_job:
     name:  workflow_job_name
     runs-on:  ubuntu-latest
@@ -33,7 +41,7 @@ jobs:
         run: |
           echo "event must be workflow_dispatch"
 
-# runs only if event is push
+# job runs only if event is push
   debug:
     name: Debug
     runs-on: ubuntu-latest
@@ -81,13 +89,28 @@ jobs:
 #          MATRIX_CONTEXT: ${{ toJson(matrix) }}
 #        run: echo "$MATRIX_CONTEXT"
 #
-  build:
-    name: Build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: echo
-        run: |
-          echo "build is now running"
 
+# Runs, based on message
+
+  check_templates:
+    name: Verify
+    if: >
+      !contains(github.event.commits[0].message, '[skip check_templates]')
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: message
+        run: |
+          echo "commit message is ${{github.event.commits[0].message}}"
+
+      - name: Get branch names
+        id: branch-name
+        uses: tj-actions/branch-names@v8
+
+      - name: Checkout repo (PR) 🛎
+        uses: actions/checkout@v4.2.2
+        if: github.event_name == 'pull_request'
+        with:
+          ref: ${{ steps.branch-name.outputs.head_ref_branch }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
