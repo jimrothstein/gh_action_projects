@@ -48,7 +48,7 @@ jobs:
     if: ${{ github.event_name == 'push' }}
     steps:
       - name: echo
-        run: echo "hello event is ${{ github.event_name }} branch is ${{ github.ref_name }}"
+        run: echo "event is ${{ github.event_name }};  branch is ${{ github.ref_name }}"
 
 
       - name: Print environment variables
@@ -104,6 +104,7 @@ jobs:
         run: |
           echo "commit message is ${{github.event.commits[0].message}}"
 
+# a lot here
       - name: Get branch names
         id: branch-name
         uses: tj-actions/branch-names@v8
