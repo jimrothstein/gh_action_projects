@@ -5,17 +5,17 @@ name: 922_if_commit.yml
 #  check commit message, do or don't do based on message content
 on:
   push:
+    branch:
+      dev
   workflow_dispatch:
 
-run-name:  920 on ${{ github.event_name }}, branch is ${{ github.headref || github.ref_name }}, ${{ github.run_number }}, @${{ github.actor }}
-
-## job:debug runs ONLY if event_name is 'push'
+run-name:  922 on ${{ github.event_name }}, branch is ${{ github.headref || github.ref_name }}, ${{ github.run_number }}, @${{ github.actor }}
 
 
 jobs:
 
   build:
-    name: Build
+    name: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -43,7 +43,6 @@ jobs:
     steps:
       - name: echo
         run: echo "event is ${{ github.event_name }};  branch is ${{ github.ref_name }}"
-
 
       - name: Print environment variables
         run: env
@@ -84,28 +83,27 @@ jobs:
 #        run: echo "$MATRIX_CONTEXT"
 #
 
-# Runs, based on message
+# Runs, based on message content
 
   check_templates:
-    name: Verify
-    if: >
-      !contains(github.event.commits[0].message, '[skip check_templates]')
+    name: build
     runs-on: ubuntu-latest
-
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: echo
+        run: |
+          echo "check_templates is running ..."
 
       - name: message
         run: |
           echo "commit message is ${{github.event.commits[0].message}}"
 
-# a lot here
-      - name: Get branch names
-        id: branch-name
-        uses: tj-actions/branch-names@v8
+      - name: skip
+        if: >
+          !contains(github.event.commits[0].message, '[skip]')
+        run: |
+          echo "Does not contain `skip`"
 
-      - name: Checkout repo (PR) 🛎
-        uses: actions/checkout@v4.2.2
-        if: github.event_name == 'pull_request'
-        with:
-          ref: ${{ steps.branch-name.outputs.head_ref_branch }}
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
+
