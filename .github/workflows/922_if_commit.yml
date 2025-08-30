@@ -63,7 +63,7 @@ jobs:
 
 # Runs, based on message content
 
-  check_commit
+  check_commit:
     name: check
     runs-on: ubuntu-latest
     steps:
