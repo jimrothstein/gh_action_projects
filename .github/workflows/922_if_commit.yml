@@ -61,32 +61,10 @@ jobs:
         run: echo "$JOB_CONTEXT"
 
 
-
-#      - name: Dump steps context
-#        env:
-#          STEPS_CONTEXT: ${{ toJson(steps) }}
-#        run: echo "$STEPS_CONTEXT"
-
-#      - name: Dump runner context
-#        env:
-#          RUNNER_CONTEXT: ${{ toJson(runner) }}
-#        run: echo "$RUNNER_CONTEXT"
-#
-#      - name: Dump strategy context
-#        env:
-#          STRATEGY_CONTEXT: ${{ toJson(strategy) }}
-#        run: echo "$STRATEGY_CONTEXT"
-#
-#      - name: Dump matrix context
-#        env:
-#          MATRIX_CONTEXT: ${{ toJson(matrix) }}
-#        run: echo "$MATRIX_CONTEXT"
-#
-
 # Runs, based on message content
 
-  check_templates:
-    name: build
+  check_commit
+    name: check
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -98,7 +76,7 @@ jobs:
 
       - name: message
         run: |
-          echo "commit message is ${{github.event.commits[0].message}}"
+          echo "commit message is ${{github.event.commits[0].message}}"  >> $GITHUB_SUMMARY
 
       - name: skip
         if: >
