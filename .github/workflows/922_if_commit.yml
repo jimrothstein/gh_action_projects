@@ -1,0 +1,111 @@
+
+name: 922_if_commit.yml
+
+## PURPOSE:
+#  check commit message, do or don't do based on message content
+on:
+  push:
+  workflow_dispatch:
+
+run-name:  920 on ${{ github.event_name }}, branch is ${{ github.headref || github.ref_name }}, ${{ github.run_number }}, @${{ github.actor }}
+
+## job:debug runs ONLY if event_name is 'push'
+
+
+jobs:
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: echo
+        run: |
+          echo "build is now running"
+
+
+# job runs only if event is workflow_dispatch
+  workflow_job:
+    name:  workflow_job_name
+    runs-on:  ubuntu-latest
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    steps:
+      - name: echo
+        run: |
+          echo "event must be workflow_dispatch"
+
+# job runs only if event is push
+  debug:
+    name: Debug
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' }}
+    steps:
+      - name: echo
+        run: echo "event is ${{ github.event_name }};  branch is ${{ github.ref_name }}"
+
+
+      - name: Print environment variables
+        run: env
+
+      - name: Print events.json
+        run: cat "$GITHUB_EVENT_PATH"
+
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+
+      - name: Dump job context
+        env:
+          JOB_CONTEXT: ${{ toJson(job) }}
+        run: echo "$JOB_CONTEXT"
+
+
+
+#      - name: Dump steps context
+#        env:
+#          STEPS_CONTEXT: ${{ toJson(steps) }}
+#        run: echo "$STEPS_CONTEXT"
+
+#      - name: Dump runner context
+#        env:
+#          RUNNER_CONTEXT: ${{ toJson(runner) }}
+#        run: echo "$RUNNER_CONTEXT"
+#
+#      - name: Dump strategy context
+#        env:
+#          STRATEGY_CONTEXT: ${{ toJson(strategy) }}
+#        run: echo "$STRATEGY_CONTEXT"
+#
+#      - name: Dump matrix context
+#        env:
+#          MATRIX_CONTEXT: ${{ toJson(matrix) }}
+#        run: echo "$MATRIX_CONTEXT"
+#
+
+# Runs, based on message
+
+  check_templates:
+    name: Verify
+    if: >
+      !contains(github.event.commits[0].message, '[skip check_templates]')
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: message
+        run: |
+          echo "commit message is ${{github.event.commits[0].message}}"
+
+# a lot here
+      - name: Get branch names
+        id: branch-name
+        uses: tj-actions/branch-names@v8
+
+      - name: Checkout repo (PR) 🛎
+        uses: actions/checkout@v4.2.2
+        if: github.event_name == 'pull_request'
+        with:
+          ref: ${{ steps.branch-name.outputs.head_ref_branch }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
