@@ -76,7 +76,7 @@ jobs:
 
       - name: message
         run: |
-          echo "commit message is ${{github.event.commits[0].message}}"  >> $GITHUB_SUMMARY
+          echo "commit message is ${{github.event.commits[0].message}}"  >> $GITHUB_STEP_SUMMARY
 
       - name: skip
         if: >
