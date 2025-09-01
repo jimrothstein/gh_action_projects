@@ -78,10 +78,11 @@ jobs:
         run: |
           echo "commit message is ${{github.event.commits[0].message}}"  >> $GITHUB_STEP_SUMMARY
 
+# Commit message MUST contain [skip], including the brackets
       - name: skip
         if: >
           !contains(github.event.commits[0].message, '[skip]')
         run: |
-          echo "Does not contain `skip`"
+          echo "Does not contain `[skip]`"
 
 
