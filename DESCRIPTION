@@ -9,7 +9,7 @@ License: MIT + file LICENSE
 Imports:
   diffdf,
 Suggests:
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
     covr
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

@@ -7,7 +7,7 @@ on:
       - tests/**
   workflow_dispatch:
     
-name: Code Coverage
+name: (jr) Code Coverage
 
 jobs:
   coverage:
