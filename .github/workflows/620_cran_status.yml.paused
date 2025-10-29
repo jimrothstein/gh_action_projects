@@ -1,32 +1,79 @@
-name: check-cran-status
+## reusable cran_status.yml
+---
+name: CRAN Status
 
-## REF:  https://github.com/dieghernan/cran-status-check/tree/main 
 on:
-  push:
-    branches: [dev, main]
-  schedule:
-    - cron: '0 6 * * 1,4' # Runs at 06:00 on Monday and Thursday, check https://crontab.guru/
+  workflow_dispatch:
+    inputs:
+      issue-assignees:
+        description: |
+          Whom should the issue be assigned to if errors are
+          encountered in the CRAN status checks?
+          This is a comma-separated string of GitHub usernames.
+          If undefined or empty, no assignments are made.
+        default: ""
+        required: false
+        type: string
+      statuses:
+        description: |
+          Create an issue if one or more of the following
+          statuses are reported on the check report.
+          This is a comma-separated string of statuses.
+          Allowed statuses are 'NOTE', 'WARN', and 'ERROR'
+        default: "ERROR"
+        required: false
+        type: string
+      path:
+        description: |
+          Path to the R package root, if the package is not at the
+          top level of the repository.
+        default: "."
+        required: false
+        type: string
+  workflow_call:
+    inputs:
+      issue-assignees:
+        description: |
+          Whom should the issue be assigned to if errors are
+          encountered in the CRAN status checks?
+          This is a comma-separated string of GitHub usernames.
+          If undefined or empty, no assignments are made.
+        default: ""
+        required: false
+        type: string
+      statuses:
+        description: |
+          Create an issue if one or more of the following
+          statuses are reported on the check report.
+          This is a comma-separated string of statuses.
+          Allowed statuses are 'NOTE', 'WARN', and 'ERROR'
+        default: "ERROR"
+        required: false
+        type: string
+      path:
+        description: |
+          Path to the R package root, if the package is not at the
+          top level of the repository.
+        default: "."
+        required: false
+        type: string
+
+permissions: write-all
+
+concurrency:
+  group: cran-status-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  check:
+  cran-status:
+    name: Check Status
     runs-on: ubuntu-latest
-    permissions:
-      issues: write
-    env:
-      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-
+    container:
+      image: rocker/tidyverse:latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Check
-        uses: dieghernan/cran-status-check@v2
-
-      - name:  do-the-work
-        uses: dieghernan/cran-status-check@v2
+      - name: Run CRAN Status Action
+        uses: insightsengineering/cran-status-action@v1
         with:
-          package: "admiral"
-          statuses: "NOTE,WARN,ERROR"
-          fail-on-error: false
-          create-issue: "true"
-          issue-assignees: "jimrothstein"
+          statuses: "${{ inputs.statuses }}"
+          issue-assignees: "${{ inputs.issue-assignees }}"
+          path: "${{ inputs.path }}"
