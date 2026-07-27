@@ -3,6 +3,9 @@ name: List Repos
 on:
   workflow_dispatch:
 
+env:
+    GH_TOKEN: ${{ github.token }}
+
 jobs:
   list-repos:
     runs-on: ubuntu-latest
