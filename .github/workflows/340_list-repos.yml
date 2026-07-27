@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-    GH_TOKEN: ${{ secrets.GH_PAT || github.token }}
+    GH_TOKEN: ${{ secrets.OPENCODE || secrets.GH_PAT || github.token }}
 
 jobs:
   list-repos:
@@ -13,6 +13,10 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+
+      - name: Sanitize token
+        run: |
+          echo "GH_TOKEN=$(echo "$GH_TOKEN" | xargs)" >> $GITHUB_ENV
 
       - name: Generate markdown repo list
         run: |
