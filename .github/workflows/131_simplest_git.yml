@@ -1,7 +1,9 @@
 name: Check Git Version
 
-## WORKS on github  b/c git is already there (with ubuntu-latest)
-## FAILS on act (see 132)
+## PURPOSE:  simple  gha, echoes git version
+## RUNS:  manually on workflow dispatch
+
+
 on:
   workflow_dispatch:
 ##  push:
