@@ -14,5 +14,9 @@ jobs:
   delete-repo:
     runs-on: ubuntu-latest
     steps:
+      - name: Sanitize token
+        run: |
+          echo "GH_TOKEN=$(echo "$GH_TOKEN" | xargs)" >> $GITHUB_ENV
+
       - name: Delete repository
         run: gh repo delete "${{ inputs.repo_name }}" --yes
