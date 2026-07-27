@@ -1,4 +1,4 @@
-name: List Repos
+name: 340_List Repos
 
 on:
   workflow_dispatch:
