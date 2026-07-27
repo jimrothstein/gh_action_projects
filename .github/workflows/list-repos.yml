@@ -1,0 +1,36 @@
+name: 340_List Repos
+
+on:
+  workflow_dispatch:
+
+env:
+    GH_TOKEN: ${{ github.token }}
+
+jobs:
+  list-repos:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate markdown repo list
+        run: |
+          echo '# Repo List' > repo-list.md
+          echo '' >> repo-list.md
+          echo "Generated on $(date)" >> repo-list.md
+          echo '' >> repo-list.md
+          gh repo list --limit 200 >> repo-list.md
+          echo '```' >> repo-list.md
+
+      - name: Add output file to .gitignore
+        run: |
+          grep -qxF 'repo-list.md' .gitignore || echo 'repo-list.md' >> .gitignore
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add repo-list.md .gitignore
+          git diff --cached --quiet || git commit -m "Add repo list and update .gitignore"
+          git push
