@@ -1,0 +1,48 @@
+# act FAILS (action token ?)
+# github  WoRKS
+name:  505_simple_artifact
+
+run-name: 505
+
+on:
+  [workflow_dispatch, pull_request]
+
+
+jobs:
+    job_A:
+        name: Job A
+        runs-on: ubuntu-latest
+        steps:
+        - name: echo
+          run: |
+            echo "hello" >> file.txt
+
+        - name: Get branch names
+          id: branch-names
+          uses: tj-actions/branch-names@v8
+
+        - name: Current branch names
+          run: |
+              echo "Current branch = ${{ steps.branch-names.outputs.current_branch }}" 
+              echo "Current branch = ${{ steps.branch-names.outputs.current_branch }}" >> file.txt
+
+        - uses: actions/upload-artifact@v4
+          with:
+            name: simple_artifact
+            path: file.txt
+
+    job_B:
+        name: Job B
+        runs-on: ubuntu-latest
+        needs: job_A
+        steps:
+        - uses: actions/download-artifact@v4
+          with:
+             name: simple_artifact
+
+        - name: Check simple file
+          run: |
+              ls -a
+              cat file.txt
+#------------------------  separate
+

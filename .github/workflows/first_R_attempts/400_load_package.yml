@@ -1,0 +1,41 @@
+# Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
+# Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
+
+name: 400 load_package
+
+on:
+  workflow_dispatch:
+
+jobs:
+  experiments:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+
+      - name: Install packages
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages: |
+            any::diffdf
+            any::devtools
+
+
+      - name: Install devtools
+        run: Rscript -e 'install.packages("devtools")'
+
+      - name:  load_all, run
+        run: Rscript -e 'devtools::load_all(); run()'
+        env:
+          GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }} # If your script interacts with GitHub
+
+
+
+      - name:  say hello 
+        run:  | 
+          echo "From action yml:  HELLO"

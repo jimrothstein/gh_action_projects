@@ -1,0 +1,20 @@
+name: 131_Check Git Version
+
+## PURPOSE:  simple  gha, echoes git version
+## RUNS:  manually on workflow dispatch
+
+
+on:
+  workflow_dispatch:
+##  push:
+
+
+jobs:
+  check_git:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify Git is installed and show version
+        run: |
+          echo "Running 'git --version' directly:"
+          git --version
+          echo "Git is indeed installed and available."

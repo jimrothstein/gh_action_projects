@@ -1,0 +1,50 @@
+name:  330_on_issue
+
+
+run-name: 330_on_issue
+
+# NOTES:
+# USE DEFAULT branch !
+
+# $GITHUB_STEP_SUMMARY appears in details of run
+
+on:
+  issues:
+     types: [opened, edited, closed, reopened, deleted]
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+
+
+
+    #if:  github.ref_name == 'dev'   # USE MAIN
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - name:   set time
+        run: sudo timedatectl set-timezone America/Los_Angeles
+
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: time
+        run: |
+          echo "DATE=$(date +'%r')" >> $GITHUB_ENV
+
+      - name: output for summary (at end)
+        run: |
+          echo "$DATE" >> $GITHUB_STEP_SUMMARY
+          echo '### Trigger was an issue' >> $GITHUB_STEP_SUMMARY
+                    - echo :heavy_check_mark: @ $DATE  >> $GITHUB_STEP_SUMMARY
+             - echo  "run number: ${{github.run_number}}" >> $GITHUB_STEP_SUMMARY
+             - run id: ${{github.run_id}}
+             - event: ** ${{github.event_name}} **
+             - attempt #: **${{github.run_attempt}}**
+             - actor: ${{github.actor}}
+             - OS:  ${{runner.os}}
+          echo " end "
+          echo "   _(event **${{ github.event_name }}** / attempt **${{ github.run_attempt }}**)_"  
+          
+          echo "   _(event **${{ github.event_name }}** / attempt **${{ github.run_attempt }}**)_" >> $GITHUB_STEP_SUMMARY
